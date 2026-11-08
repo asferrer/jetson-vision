@@ -225,8 +225,13 @@ class CameraSource(GStreamerSource):
                 return self.make_frame(pixels, pts, t_mono_ns=self._capture_mono(pts))
             self._raise_bus_error()
             if self._sink.get_property("eos"):
-                raise SourceError(f"camera '{self.source_id}' ended its stream")
+                raise SourceError(f"camera '{self.source_id}' ended its stream{self._eos_hint()}")
         raise SourceError(f"camera '{self.source_id}' silent for {self.silence_s:.0f} s")
+
+    def _eos_hint(self) -> str:
+        if self.spec.kind == "csi":  # nvarguscamerasrc reports "No cameras available" on stderr and then ends the stream
+            return " (no CSI sensor found or it was disconnected; check the cable and the nvargus-daemon service)"
+        return ""
 
     def _capture_mono(self, pts: int | None) -> int | None:
         """Pipeline running time of the buffer on the monotonic clock; None if it is not plausible (use the read time)."""

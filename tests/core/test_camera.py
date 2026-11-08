@@ -272,6 +272,15 @@ def test_end_of_stream_is_an_error_for_a_camera_not_the_end_of_the_run(install):
         src.read()
 
 
+def test_csi_end_of_stream_points_at_the_sensor_and_the_daemon(install):
+    pipe = install()
+    src = CameraSource("cam:csi:0")
+    src.open()
+    pipe.sink.eos = True
+    with pytest.raises(SourceError, match="no CSI sensor.*nvargus-daemon"):
+        src.read()
+
+
 def test_silent_camera_raises_after_the_timeout(install):
     install()
     src = CameraSource("cam:csi:0", silence_s=0.15)

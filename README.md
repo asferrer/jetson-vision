@@ -365,7 +365,8 @@ restarts it). **The system unit** (`jetson-vision.service`, with `User=`) **was 
 
 `pytest tests` covers sinks, health, tracking, CLI, ROS mapping, simulated faults (`tests/ops/test_faults.py`: a camera that
 drops and reconnects, a hung backend, high temperature, drifting latency) and the pipeline, including the staged threading
-(`tests/core/test_pipeline_stages.py`: overlap, order, back-pressure, drop policy, errors per stage, clean shutdown).
+(`tests/core/test_pipeline_stages.py`: overlap, order, back-pressure, drop policy, errors per stage, clean shutdown)), and the camera sources
+(`tests/core/test_camera.py`: URI parsing, generated GStreamer chains, reconnection and live drop).
 Tests use no GPU or external services. On-device measurements are in `tests/core/jetson_*.py` and `jetson_e2e.sh` (not
 collected by pytest). `tools/reference/stages.py` is the author's prototype pipeline, used as the independent reference of
 the AP regression; it needs the Jetson stack.

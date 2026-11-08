@@ -1,0 +1,88 @@
+{
+ "results": 1683,
+ "delivered_by_source": 1686,
+ "dropped": 3,
+ "dropped_pct": 0.17793594306049823,
+ "span_s": 56.233331029,
+ "fps": 29.911085991555055,
+ "skipped_warmup": 30,
+ "mean_detections": 0.0,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.247264,
+   "p95_ms": 36.0449226,
+   "p99_ms": 36.826941,
+   "max_ms": 41.699974
+  },
+  "preprocess": {
+   "p50_ms": 3.215087,
+   "p95_ms": 4.2261619999999995,
+   "p99_ms": 5.18689948,
+   "max_ms": 12.48104
+  },
+  "inference": {
+   "p50_ms": 26.881379,
+   "p95_ms": 29.9776208,
+   "p99_ms": 31.17984656,
+   "max_ms": 31.909649
+  },
+  "postprocess": {
+   "p50_ms": 1.307598,
+   "p95_ms": 4.478830199999999,
+   "p99_ms": 5.9316876,
+   "max_ms": 6.640711
+  },
+  "queue": {
+   "p50_ms": 0.688824,
+   "p95_ms": 2.7960519999999973,
+   "p99_ms": 4.240693320000001,
+   "max_ms": 8.965526
+  },
+  "service": {
+   "p50_ms": 77.814803,
+   "p95_ms": 81.3733162,
+   "p99_ms": 83.46986487999999,
+   "max_ms": 86.140254
+  },
+  "total": {
+   "p50_ms": 79.150276,
+   "p95_ms": 82.9194722,
+   "p99_ms": 84.75009716000001,
+   "max_ms": 89.346768
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 32,
+  "proc_cores_mean": 2.1195,
+  "proc_cores_max": 2.188,
+  "rss_mb_mean": 1198.15625,
+  "rss_mb_max": 1211.5,
+  "rss_mb_first": 1205.1,
+  "rss_mb_last": 920.9,
+  "ram_used_mb_max": 1966.4,
+  "temp_max_c": 57.0,
+  "temp_mean_c": 56.34375,
+  "gpu_mhz_mean": 602.4375,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 1194.9375
+ },
+ "tegrastats": {
+  "samples": 34,
+  "ram_mb_mean": 1974.5882352941176,
+  "ram_mb_max": 2017.0,
+  "cpu_pct_mean_per_core": 35.299019607843135,
+  "gr3d_pct_mean": 69.67647058823529,
+  "gr3d_mhz_mean": 577.5,
+  "vdd_in_w_mean": 9.452117647058824,
+  "vdd_in_w_max": 10.029,
+  "tj_max_c": 56.75,
+  "emc_pct_mean": 33.411764705882355,
+  "nvdec_active_samples": 0,
+  "vic_active_samples": 32
+ }
+}

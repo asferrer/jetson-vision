@@ -1,6 +1,7 @@
 # Installed as /etc/jetson-vision/env. Values are examples to adapt; none is a measurement.
-# Camera or file (v4l2:/dev/video0, gst:<pipeline>, folder:<dir>, video:<file>)
-JV_SOURCE=v4l2:/dev/video0
+# Camera or file (cam:csi:0?w=1920&h=1080&fps=30, cam:v4l2:/dev/video0?fmt=mjpg, cam:rtsp://host/stream, v4l2:/dev/video0,
+# gst:<pipeline>, folder:<dir>, video:<file>)
+JV_SOURCE=cam:v4l2:/dev/video0?w=1920&h=1080&fps=30&fmt=mjpg
 # Manifest of the model (engines are built on the Jetson and never committed)
 JV_MODEL=/opt/jetson-vision/models/rfdetr_int8g.yaml
 JV_MODEL_DIR=/opt/jetson-vision/engines

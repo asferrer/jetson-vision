@@ -1,0 +1,9 @@
+# jv run --max-seconds 20 with a source that cannot work (Jetson Orin Nano, 15 W, no camera, no /dev/video*)
+# Every run: exit code 0, 6 reconnection attempts, waits 0.5 1 2 4 8 10 s, wall time 21.5 to 22.1 s (20 s plus engine load).
+# SIGTERM sent during a backoff wait of the v4l2 case: process gone after 1.08 s, exit code 0.
+cam:v4l2:/dev/video9     GStreamer error: Cannot identify device '/dev/video9'.
+cam:csi:0                camera 'cam:csi:0' ended its stream (no CSI sensor found or it was disconnected; check the cable and the nvargus-daemon service)
+                         (stderr of nvarguscamerasrc: "No cameras available")
+cam:rtsp://127.0.0.1:8554/none   GStreamer error: Could not open resource for reading and writing.
+# jv run --max-seconds 40 with cam:test?...&frames=150: 6 reconnections (stream ended each time), 993 results, one session_id,
+# frame_seq 0..993 without a restart.

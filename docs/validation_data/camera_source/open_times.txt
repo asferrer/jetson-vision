@@ -1,0 +1,6 @@
+# CameraSource.open() + failure time against the real GStreamer (no camera)
+cam:v4l2:/dev/video0                    0.13 s  SourceError: GStreamer error: Cannot identify device '/dev/video0'.
+cam:v4l2:/dev/video0?fmt=yuy2&hw=0      0.00 s  SourceError: GStreamer error: Cannot identify device '/dev/video0'.
+cam:csi:0                               0.14 s  SourceError: ended its stream
+cam:csi:1?w=1280&h=720                  0.01 s  SourceError: ended its stream
+cam:rtsp://127.0.0.1:8554/none          0.13 s  SourceError: Could not open resource for reading and writing.

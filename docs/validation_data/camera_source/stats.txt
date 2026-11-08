@@ -1,0 +1,25 @@
+== nv12_300
+results 8859 span 295.3s fps 30.00 seq_range 8859 dropped 0
+total p50 57.7 p95 61.5 p99 62.9 max 76.9 ms
+total p50 by quarter [57.3, 54.9, 57.7, 58.9]
+summary fps 30.0 dropped 0 tegra {'samples': 271, 'ram_mb_mean': 1851.110701107011, 'ram_mb_max': 1868.0, 'cpu_pct_mean_per_core': 29.821033210332104, 'gr3d_pct_mean': 72.16974169741698, 'gr3d_mhz_mean': 605.590405904059, 'vdd_in_w_mean': 9.92308856088561, 'vdd_in_w_max': 10.187, 'tj_max_c': 57.406, 'emc_pct_mean': 33.87084870848709, 'nvdec_active_samples': 0, 'vic_active_samples': 268} monitor {'samples': 272, 'proc_cores_mean': 1.778158088235294, 'proc_cores_max': 1.869, 'rss_mb_mean': 1010.0319852941177, 'rss_mb_max': 1014.9, 'rss_mb_first': 1007.9, 'rss_mb_last': 901.7, 'ram_used_mb_max': 1818.0, 'temp_max_c': 57.3, 'temp_mean_c': 55.59411764705882, 'gpu_mhz_mean': 610.875, 'gpu_mhz_min': 306.0, 'gpu_mhz_max': 612.0, 'cpu_mhz_mean': 905.4889705882352}
+== yuy2_60
+results 1658 span 55.2s fps 30.02 seq_range 1658 dropped 0
+total p50 50.6 p95 62.5 p99 64.0 max 70.6 ms
+total p50 by quarter [50.8, 50.0, 50.4, 55.8]
+summary fps 29.982 dropped 1 tegra {'samples': 34, 'ram_mb_mean': 1828.0882352941176, 'ram_mb_max': 1867.0, 'cpu_pct_mean_per_core': 26.284313725490193, 'gr3d_pct_mean': 66.76470588235294, 'gr3d_mhz_mean': 585.7647058823529, 'vdd_in_w_mean': 9.484823529411765, 'vdd_in_w_max': 10.108, 'tj_max_c': 56.312, 'emc_pct_mean': 32.73529411764706, 'nvdec_active_samples': 0, 'vic_active_samples': 32} monitor {'samples': 32, 'proc_cores_mean': 1.6173125, 'proc_cores_max': 1.769, 'rss_mb_mean': 1008.85, 'rss_mb_max': 1017.9, 'rss_mb_first': 1011.6, 'rss_mb_last': 900.9, 'ram_used_mb_max': 1815.9, 'temp_max_c': 56.6, 'temp_mean_c': 55.903125, 'gpu_mhz_mean': 602.4375, 'gpu_mhz_min': 306.0, 'gpu_mhz_max': 612.0, 'cpu_mhz_mean': 1286.375}
+== mjpg_60
+results 1653 span 55.1s fps 30.02 seq_range 1653 dropped 0
+total p50 79.2 p95 82.9 p99 84.8 max 89.3 ms
+total p50 by quarter [79.2, 78.6, 78.6, 79.8]
+summary fps 29.911 dropped 3 tegra {'samples': 34, 'ram_mb_mean': 1974.5882352941176, 'ram_mb_max': 2017.0, 'cpu_pct_mean_per_core': 35.299019607843135, 'gr3d_pct_mean': 69.67647058823529, 'gr3d_mhz_mean': 577.5, 'vdd_in_w_mean': 9.452117647058824, 'vdd_in_w_max': 10.029, 'tj_max_c': 56.75, 'emc_pct_mean': 33.411764705882355, 'nvdec_active_samples': 0, 'vic_active_samples': 32} monitor {'samples': 32, 'proc_cores_mean': 2.1195, 'proc_cores_max': 2.188, 'rss_mb_mean': 1198.15625, 'rss_mb_max': 1211.5, 'rss_mb_first': 1205.1, 'rss_mb_last': 920.9, 'ram_used_mb_max': 1966.4, 'temp_max_c': 57.0, 'temp_mean_c': 56.34375, 'gpu_mhz_mean': 602.4375, 'gpu_mhz_min': 306.0, 'gpu_mhz_max': 612.0, 'cpu_mhz_mean': 1194.9375}
+== over60_60
+results 1949 span 45.7s fps 42.65 seq_range 2743 dropped 795
+total p50 5085.9 p95 9406.8 p99 9796.3 max 9888.0 ms
+total p50 by quarter [1442.4, 3871.1, 6278.5, 8697.8]
+summary fps 42.568 dropped 810 tegra {'samples': 34, 'ram_mb_mean': 1975.8529411764705, 'ram_mb_max': 2021.0, 'cpu_pct_mean_per_core': 40.254901960784316, 'gr3d_pct_mean': 77.55882352941177, 'gr3d_mhz_mean': 587.2058823529412, 'vdd_in_w_mean': 11.1835, 'vdd_in_w_max': 12.004, 'tj_max_c': 58.593, 'emc_pct_mean': 39.64705882352941, 'nvdec_active_samples': 0, 'vic_active_samples': 32} monitor {'samples': 32, 'proc_cores_mean': 2.4898125, 'proc_cores_max': 2.616, 'rss_mb_mean': 1024.5812500000002, 'rss_mb_max': 1030.5, 'rss_mb_first': 1030.1, 'rss_mb_last': 902.8, 'ram_used_mb_max': 1969.9, 'temp_max_c': 58.8, 'temp_mean_c': 58.13125, 'gpu_mhz_mean': 602.4375, 'gpu_mhz_min': 306.0, 'gpu_mhz_max': 612.0, 'cpu_mhz_mean': 847.46875}
+== rt_over_60
+results 1447 span 55.1s fps 26.28 seq_range 1653 dropped 206
+total p50 81.6 p95 98.1 p99 99.7 max 102.1 ms
+total p50 by quarter [81.8, 81.7, 82.5, 80.7]
+summary fps 26.232 dropped 212 tegra {'samples': 34, 'ram_mb_mean': 1953.0882352941176, 'ram_mb_max': 1986.0, 'cpu_pct_mean_per_core': 32.52941176470589, 'gr3d_pct_mean': 82.23529411764706, 'gr3d_mhz_mean': 592.2352941176471, 'vdd_in_w_mean': 9.611617647058823, 'vdd_in_w_max': 10.148, 'tj_max_c': 57.031, 'emc_pct_mean': 30.91176470588235, 'nvdec_active_samples': 0, 'vic_active_samples': 32} monitor {'samples': 32, 'proc_cores_mean': 1.9930625, 'proc_cores_max': 2.168, 'rss_mb_mean': 1078.5125, 'rss_mb_max': 1084.8, 'rss_mb_first': 1084.6, 'rss_mb_last': 889.5, 'ram_used_mb_max': 1935.3, 'temp_max_c': 57.1, 'temp_mean_c': 56.618750000000006, 'gpu_mhz_mean': 602.4375, 'gpu_mhz_min': 306.0, 'gpu_mhz_max': 612.0, 'cpu_mhz_mean': 1281.71875}

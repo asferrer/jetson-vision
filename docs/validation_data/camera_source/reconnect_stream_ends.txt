@@ -1,0 +1,7 @@
+# cam:test?...&frames=150, 40 s run: the stream ends every 150 frames
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s
+WARNING jetson_vision.pipeline source 'cam:test' failed (camera 'cam:test' ended its stream); reconnecting in 0.5 s

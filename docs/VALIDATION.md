@@ -320,7 +320,8 @@ drops. `queue` is the queue wait (the one that used to inflate `total_ns`); `ser
 
 ## 12. What has not been measured
 
-- **Real camera, CSI and V4L2**: untested (no camera). Only `gst:file:` and UDP/RTP through NVDEC.
+- **Real camera, CSI, V4L2 and RTSP**: untested (no camera). The `cam:` sources were exercised with a simulated live source
+  and with missing devices only (section 14); before them, only `gst:file:` and UDP/RTP through NVDEC.
 - **ROS 2 only in a container** (PC, CPU, fake backend): the Jetson has no ROS 2.
 - **No real water**: no turbidity or moving underwater content; the VAL AP (92.5 % 416×416 photos) does not detect it.
 - **systemd system unit** (with `sudo`): untested; the user variant was.
@@ -405,3 +406,61 @@ throttling alarms in another mode. Tj stayed far below the 85 C abort limit. Dat
 - 25 W to MAXN_SUPER adds little (+6 % RF-DETR, +7 % RT-DETRv2) for +0.3 to 0.7 W.
 - Each mode was a single 300 s run per model with temperatures measured in open air (no enclosure). The 15 W RT-DETRv2
   reference is a single bench run. The sweep did not re-measure 720p, 15 fps, endurance or AP in other modes.
+
+## 14. Camera sources (`cam:`), simulated live source
+
+**What was and was not tested.** The Jetson had **no camera**: there was no `/dev/video*` and no CSI sensor. The camera sources
+(`cam:csi`, `cam:v4l2`, `cam:rtsp`) were therefore **never run against hardware**. What was run:
+
+- the real GStreamer chain of `cam:test`, a `videotestsrc is-live=true` that goes through the **same conversion tail** as the
+  V4L2 sources (`nv12` and `yuy2` raw, `mjpg` through `jpegenc` and the hardware MJPEG decoder `nvv4l2decoder mjpeg=1`), with
+  the real engine and the whole `jv run` pipeline;
+- the CSI, V4L2 and RTSP chains up to the expected failure (no sensor, no device, nothing listening);
+- reconnection and clean stop.
+
+What `cam:test` does **not** reproduce: sensor exposure and ISP, USB or CSI transport, driver buffers, MJPEG from a real camera
+(here the JPEGs come from `jpegenc`), real timestamps and clock drift, and the CPU cost of a real driver. Its own cost is
+inside the measured chain: the pattern generator runs in its own thread behind a leaky queue, and the test source stamps frames by
+frame count, so if the generator cannot keep up the stamps fall behind real time (seen at 60 fps: age grew to 10 s, which is the
+generator, not the pipeline; that run is not used below).
+
+**Method.** Same Jetson, 15 W read with `nvpmodel -q` (not changed), dynamic clocks, RF-DETR INT8 G, `jv run` with
+`--max-seconds`, the first 30 results discarded. Latency is `total_ns`: from the capture stamp (the device timestamp,
+so it includes the camera chain and, here, the pattern generator) to publication. Data: `docs/validation_data/camera_source/`.
+
+| Source | Model | Run | Delivered | Drops | `total` p50 / p95 / p99 / max (ms) | Board W | Tj max C |
+|---|---|---|---|---|---|---|---|
+| `cam:test` 1080p30 nv12 | RF-DETR | 300 s | 30.00 fps (8,859 results) | 0 | 57.7 / 61.5 / 62.9 / 76.9 | 9.92 | 57.4 |
+| `cam:test` 1080p30 yuy2 | RF-DETR | 60 s | 30.02 fps | 0 | 50.6 / 62.5 / 64.0 / 70.6 | not measured | not measured |
+| `cam:test` 1080p30 mjpg | RF-DETR | 60 s | 30.02 fps | 0 | 79.2 / 82.9 / 84.8 / 89.3 | not measured | not measured |
+| `cam:test` 1080p30 nv12 | RT-DETRv2 | 60 s | 26.3 fps | 212 of 1,659 (12.6 %) | 81.6 / 98.1 / 99.7 / 102.1 | not measured | not measured |
+
+- **Quarters of the 300 s run**: `total` p50 57.3, 54.9, 57.7 and 58.9 ms. It does not drift.
+- Compared with the `gst:file:` run of section 13 (p50 34.5, p95 38.3, 15 W): the camera chain adds 20 to 25 ms to the stamped
+  latency because the stamp is taken where the frame is produced (generator, then `nvvidconv` and the CPU `videoconvert` to BGR),
+  whereas the file source stamps it after NVDEC. The process used 1.78 CPU cores on average; the generator is extra CPU
+  load that a real camera does not have.
+- **MJPEG** adds about 20 to 30 ms over nv12 and yuy2 in this test, mostly the `jpegenc` of the generator stamped before the encode; the
+  decoder side was not isolated.
+- **Overload** (RT-DETRv2 cannot sustain 30 fps at 15 W, section 13.1): the newest-frame-wins policy keeps latency flat (p50 stays
+  81 ms over the run) and the drops are counted in `dropped_before`: 212 of 1,659 frames.
+- The software MJPEG path (`hw=0`, `jpegdec`) **failed on this Jetson** for `cam:test` ("Failed to decode JPEG image"), and the
+  same happens with a plain `gst-launch-1.0 videotestsrc ! jpegenc ! jpegdec`: it is the system `jpegdec`, not the source. It
+  was not tested with a real MJPEG camera, so `hw=1` is the only MJPEG path known to work.
+
+**Missing devices and reconnection** (`jv run`, 15 W, `--max-seconds 20`, `no_device_runs.txt`):
+
+| Source | Failure reported | Open fails in | Reconnect waits | Exit |
+|---|---|---|---|---|
+| `cam:v4l2:/dev/video9` | `Cannot identify device '/dev/video9'` | 0.13 s | 0.5, 1, 2, 4, 8, 10 s | 0, after 21.6 s |
+| `cam:csi:0` | ended its stream, "no CSI sensor found..." (`nvarguscamerasrc`: "No cameras available") | 0.14 s | same | 0, after 22.1 s |
+| `cam:rtsp://127.0.0.1:8554/none` | `Could not open resource for reading and writing` | 0.13 s | same | 0, after 21.5 s |
+
+None hangs. Health stayed at level 0 (declared "no source") with 0 fps; a `SIGTERM` during a backoff wait ended the process in
+1.08 s with exit code 0. A stream that ends (`cam:test?...&frames=150`, 40 s run) was reconnected 6 times: one `session_id`,
+`frame_seq` 0 to 993 without a restart, backoff back to 0.5 s after each success. `nvarguscamerasrc` and `v4l2src` build their
+chains and fail with the expected "no sensor" and "no device" errors; `nvargus-daemon` was active.
+
+**Not covered**: a real camera of any kind (including MJPEG decoding of real frames, USB bandwidth, CSI ISP latency and
+autoexposure), unplug and replug of real hardware, RTSP against a real server, `h265`, `flip`, the system unit with a camera.
+The steps to test a USB or CSI camera are in the README ("Camera sources") and `deploy/INSTALL.md` ("Cameras").

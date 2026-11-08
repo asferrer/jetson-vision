@@ -43,7 +43,9 @@ difference is 0.009.
 
 ### What has NOT been tested
 
-- **A real camera** (CSI, V4L2): only `gst:file:` and RTP over UDP, with NVDEC.
+- **A physical camera** (CSI, USB/V4L2, RTSP): the `cam:` sources are implemented and were exercised only with a simulated
+  live source (`cam:test`, `videotestsrc`) and with missing devices, never with real hardware. Before that, only `gst:file:`
+  and RTP over UDP, with NVDEC, had been measured (`docs/VALIDATION.md`, section 14).
 - **ROS 2 on the Jetson**: the adapter is tested only in a container on a PC (CPU, fake backend).
 - **Real water**: no turbidity, no moving underwater scenes. The VAL images are 92.5 % 416x416 photos, and the video is
   slides of still photos, so decoding is lighter than with real footage.
@@ -89,7 +91,7 @@ On the Jetson the real backend needs `tensorrt` and `torch` from JetPack (see `d
 jv run --source <uri> --model models/rfdetr_int8g.yaml --sink jsonl:out/results.jsonl
 ```
 
-- `--source`: folder or image, video file, `v4l2:N` or `/dev/videoN`, `gst:<uri>`.
+- `--source`: folder or image, video file, `v4l2:N` or `/dev/videoN`, `gst:<uri>`, or a live camera `cam:...` (next section).
 - `--backend tensorrt|fake` (default `tensorrt`); `--model-dir` or `JV_MODEL_DIR` for the engine.
 - `--sink` can be repeated: `jsonl:<path>`, `compact:<path>` or `stdout`.
 - `--track` enables IoU tracking (off by default). `--threshold` overrides the score threshold (manifest default: RF-DETR
@@ -101,6 +103,36 @@ jv run --source <uri> --model models/rfdetr_int8g.yaml --sink jsonl:out/results.
   install time. Without a baseline there is no latency-based throttling detection, only temperature.
 - `--watchdog` talks to systemd (`READY=1`, `WATCHDOG=1`).
 - Exit codes: 0 ok, 1 failure, 2 bad usage, 3 orderly stop because of temperature (level 3).
+
+### Camera sources (`cam:`)
+
+```
+jv run --source "cam:csi:0?w=1920&h=1080&fps=30" --model models/rfdetr_int8g.yaml --sink jsonl:out/results.jsonl
+jv run --source "cam:v4l2:/dev/video0?w=1920&h=1080&fps=30&fmt=mjpg" --model ...
+jv run --source "cam:rtsp://user:pass@192.168.1.20/stream1?codec=h264&latency=100" --model ...
+```
+
+| URI | Chain |
+|---|---|
+| `cam:csi:<id>[?w=&h=&fps=&flip=]` | `nvarguscamerasrc` (NVMM, NV12) -> `nvvidconv` -> BGR. `flip` is the `nvvidconv` flip-method (0 to 7). |
+| `cam:v4l2:<device or N>[?w=&h=&fps=&fmt=&hw=]` | `v4l2src` with `fmt` = `mjpg` (default), `yuy2` or `nv12`. MJPEG: `nvv4l2decoder mjpeg=1` (`hw=1`, default) or `jpegdec` (`hw=0`). Raw: `nvvidconv` (`hw=1`) or `videoconvert` (`hw=0`) to BGR. |
+| `cam:rtsp://host/path[?codec=&latency=&hw=]` | `rtspsrc` -> depayloader -> `nvv4l2decoder` (`hw=1`) or `avdec_*` (`hw=0`). `codec` = `h264` (default) or `h265`; `latency` in ms (default 100). The URL cannot carry its own query string; use a `gst:` launch string for that. |
+| `cam:test[?w=&h=&fps=&fmt=&frames=]` | `videotestsrc is-live=true` through the same conversion tail. **For tests only**: it needs no camera. `frames=N` ends the stream after N frames (simulates a camera that goes away). |
+
+Defaults: `w=1920 h=1080 fps=30`. An unknown parameter or value is an error, not ignored.
+
+Live semantics (all `cam:` sources):
+
+- The `appsink` keeps one buffer and drops the older ones (`max-buffers=1 drop=true sync=false`), so latency never accumulates;
+  the pipeline's "newest frame wins" hand-offs do the rest. Frames the pipeline replaces are counted in `dropped_before`.
+  Frames dropped by the driver or by the `appsink` before the read are not visible in `frame_seq`.
+- `t_capture_mono_ns` is the capture time reported by the device (buffer timestamp plus the pipeline base time on the monotonic
+  clock), so `total` latency includes the time a frame waited in the camera chain. If that time is not plausible the read time
+  is used. `source_stamp` is the buffer timestamp.
+- A missing device, a failed start, a silent device (5 s) or an end of stream raise `SourceError`; the pipeline reconnects with
+  waits of 0.5, 1, 2, 4, 8 and then 10 s, the health monitor declares "no source" and a stop request interrupts the wait.
+  A missing GStreamer element is reported by name.
+- `source_id` is `cam:<kind>:<target>`; for RTSP only the host is kept, so credentials do not reach the JSONL.
 
 ### `jv bench` and `jv replay`
 

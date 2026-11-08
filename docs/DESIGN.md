@@ -39,7 +39,7 @@ jetson_vision/          core, no ROS
   types.py              data contract (fixed)
   interfaces.py         protocols between components (fixed)
   manifest.py           model.yaml: hash, TensorRT version, GPU, input, decoder, classes
-  sources/              file, folder, video, v4l2, gstreamer
+  sources/              file, folder, video, v4l2, gstreamer, camera (cam: URIs)
   preprocess.py         manifest-driven resizing; asserts a contiguous buffer
   backends/             tensorrt, fake
   postprocess.py        RF-DETR and RT-DETRv2 decoders

@@ -1,0 +1,88 @@
+{
+ "results": 1477,
+ "delivered_by_source": 1689,
+ "dropped": 212,
+ "dropped_pct": 12.551805802249852,
+ "span_s": 56.266666922,
+ "fps": 26.23222736911205,
+ "skipped_warmup": 30,
+ "mean_detections": 0.027081922816519974,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.286028,
+   "p95_ms": 33.865325500000004,
+   "p99_ms": 35.07054147999998,
+   "max_ms": 40.596774
+  },
+  "preprocess": {
+   "p50_ms": 5.478523,
+   "p95_ms": 6.4150052,
+   "p99_ms": 7.57933722,
+   "max_ms": 11.384803
+  },
+  "inference": {
+   "p50_ms": 37.782885,
+   "p95_ms": 39.6876259,
+   "p99_ms": 41.99730784,
+   "max_ms": 44.916632
+  },
+  "postprocess": {
+   "p50_ms": 0.323147,
+   "p95_ms": 0.45583260000000003,
+   "p99_ms": 1.7664517399999946,
+   "max_ms": 2.982949
+  },
+  "queue": {
+   "p50_ms": 16.239719,
+   "p95_ms": 32.2488625,
+   "p99_ms": 34.07234252,
+   "max_ms": 36.336566
+  },
+  "service": {
+   "p50_ms": 65.513699,
+   "p95_ms": 68.0966025,
+   "p99_ms": 69.88903812,
+   "max_ms": 74.713354
+  },
+  "total": {
+   "p50_ms": 81.558638,
+   "p95_ms": 98.07784240000001,
+   "p99_ms": 99.73182750000001,
+   "max_ms": 102.084471
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 32,
+  "proc_cores_mean": 1.9930625,
+  "proc_cores_max": 2.168,
+  "rss_mb_mean": 1078.5125,
+  "rss_mb_max": 1084.8,
+  "rss_mb_first": 1084.6,
+  "rss_mb_last": 889.5,
+  "ram_used_mb_max": 1935.3,
+  "temp_max_c": 57.1,
+  "temp_mean_c": 56.618750000000006,
+  "gpu_mhz_mean": 602.4375,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 1281.71875
+ },
+ "tegrastats": {
+  "samples": 34,
+  "ram_mb_mean": 1953.0882352941176,
+  "ram_mb_max": 1986.0,
+  "cpu_pct_mean_per_core": 32.52941176470589,
+  "gr3d_pct_mean": 82.23529411764706,
+  "gr3d_mhz_mean": 592.2352941176471,
+  "vdd_in_w_mean": 9.611617647058823,
+  "vdd_in_w_max": 10.148,
+  "tj_max_c": 57.031,
+  "emc_pct_mean": 30.91176470588235,
+  "nvdec_active_samples": 0,
+  "vic_active_samples": 32
+ }
+}

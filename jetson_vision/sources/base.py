@@ -26,9 +26,15 @@ class SourceBase:
         self.session_id = str(uuid.uuid4())
         self._seq = 0
 
-    def make_frame(self, pixels: np.ndarray, source_stamp: int | None = None) -> Frame:
-        """Stamp a captured image. Call it right after the capture returns: both clocks are read here."""
+    def make_frame(self, pixels: np.ndarray, source_stamp: int | None = None, *, t_mono_ns: int | None = None) -> Frame:
+        """Stamp a captured image. Call it right after the capture returns: both clocks are read here.
+
+        t_mono_ns: the true capture instant on the monotonic clock when the device reports it (a live camera); the wall
+        clock is shifted by the same amount, so both stamps name the capture and not the moment of the read.
+        """
         mono, wall = time.monotonic_ns(), time.time_ns()
+        if t_mono_ns is not None:
+            mono, wall = t_mono_ns, wall - (mono - t_mono_ns)
         pixels = require_image(np.ascontiguousarray(pixels), f"source '{self.source_id}'")
         ref = FrameRef(self.source_id, self.session_id, self._seq, mono, wall, source_stamp)
         self._seq += 1

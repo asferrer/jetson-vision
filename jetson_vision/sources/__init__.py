@@ -16,12 +16,16 @@ def make_source(spec: str, *, mode: str = "max", fps: float | None = None, live:
                 loop: bool = False) -> FrameSource:
     """Build a source from a string.
 
+    cam:csi:0?w=1920&h=1080&fps=30, cam:v4l2:/dev/video0?fmt=mjpg, cam:rtsp://host/s: live cameras (sources.camera)
     gst:<uri>        GStreamer (uri as in sources.gstreamer.build_pipeline: csi:0, rtsp://..., file:x.mp4, ...)
     /dev/videoN, v4l2:<device or index>
     a directory or an image file -> FolderSource; a video file -> VideoSource
     live=True makes a gst:file: source play at its own rate and drop late frames (a camera stand-in);
     loop=True restarts a gst:file: source at its end (long runs from a short clip).
     """
+    if spec.startswith("cam:"):
+        from jetson_vision.sources.camera import CameraSource
+        return CameraSource(spec)
     if spec.startswith("gst:"):
         from jetson_vision.sources.gstreamer import GStreamerSource
         return GStreamerSource(spec[4:], mode=mode, live=live, loop=loop)

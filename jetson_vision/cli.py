@@ -330,7 +330,7 @@ def cmd_replay(args: argparse.Namespace) -> int:
 
 # ---- parser -------------------------------------------------------------------------------------
 def _common(p: argparse.ArgumentParser) -> None:
-    p.add_argument("--source", required=True, help="folder, image, video file, v4l2:N, gst:<uri>")
+    p.add_argument("--source", required=True, help="folder, image, video file, v4l2:N, gst:<uri>, cam:<csi|v4l2|rtsp|test>...")
     p.add_argument("--model", required=True, help="path of the model manifest (yaml)")
     p.add_argument("--backend", choices=("tensorrt", "fake"), default="tensorrt")
     p.add_argument("--model-dir", default=None, help="engine directory (or JV_MODEL_DIR)")

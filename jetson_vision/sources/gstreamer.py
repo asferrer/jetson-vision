@@ -67,36 +67,53 @@ def build_pipeline(uri: str, *, live: bool | None = None, mode: str = "max", hw_
     return f"{src} ! {_appsink(is_live, sync and (is_live is False or uri.startswith('file:')))}", is_live
 
 
+def load_gst() -> Any:
+    """Import PyGObject's Gst and initialise it; SourceError if it is not installed."""
+    try:
+        import gi
+        gi.require_version("Gst", "1.0")
+        from gi.repository import Gst
+    except (ImportError, ValueError) as exc:
+        raise SourceError(f"GStreamer source needs PyGObject with GStreamer 1.0: {exc}") from exc
+    Gst.init(None)
+    return Gst
+
+
 class GStreamerSource(SourceBase):
     """Frames from a GStreamer pipeline. mode only matters for files: 'paced' follows the pipeline clock."""
 
     def __init__(self, uri: str, *, mode: str = "max", hw_decode: bool = True, live: bool | None = None,
                  width: int = 1920, height: int = 1080, fps: int = 30, loop: bool = False,
                  source_id: str | None = None) -> None:
-        super().__init__(source_id or f"gst:{Path(uri).name if uri.startswith('file:') else uri.split(':')[0]}")
-        self.launch, self.live = build_pipeline(uri, live=live, mode=mode, hw_decode=hw_decode,
-                                                width=width, height=height, fps=fps)
+        launch, live_flag = build_pipeline(uri, live=live, mode=mode, hw_decode=hw_decode,
+                                           width=width, height=height, fps=fps)
+        self._init_state(source_id or f"gst:{Path(uri).name if uri.startswith('file:') else uri.split(':')[0]}", launch)
+        self.live = live_flag
         self.loop, self.loops = loop and uri.startswith("file:"), 0  # loop: restart a file at its end
+
+    def _init_state(self, source_id: str, launch: str) -> None:
+        SourceBase.__init__(self, source_id)
+        self.launch = launch
+        self.loop, self.loops = False, 0
         self._pipe: Any = None
         self._sink: Any = None
         self._gst: Any = None
 
     def open(self) -> None:
-        try:
-            import gi
-            gi.require_version("Gst", "1.0")
-            from gi.repository import Gst
-        except (ImportError, ValueError) as exc:
-            raise SourceError(f"GStreamer source needs PyGObject with GStreamer 1.0: {exc}") from exc
-        Gst.init(None)
+        Gst = load_gst()
         try:
             pipe = Gst.parse_launch(self.launch)
         except Exception as exc:  # GLib.Error
             raise SourceError(f"GStreamer cannot build the pipeline: {exc}") from exc
         sink = pipe.get_by_name(_SINK)
-        if sink is None or pipe.set_state(Gst.State.PLAYING) == Gst.StateChangeReturn.FAILURE:
-            raise SourceError("GStreamer pipeline did not start (no appsink or state change failed)")
         self._gst, self._pipe, self._sink = Gst, pipe, sink
+        if sink is None:
+            self._abandon()
+            raise SourceError("GStreamer pipeline has no appsink")
+        if pipe.set_state(Gst.State.PLAYING) == Gst.StateChangeReturn.FAILURE:
+            self._raise_bus_error(cleanup=True)
+            self._abandon()
+            raise SourceError("GStreamer pipeline did not start (state change failed)")
 
     def read(self):
         if self._sink is None:
@@ -118,11 +135,20 @@ class GStreamerSource(SourceBase):
         self.loops += 1
         return True
 
-    def _raise_bus_error(self) -> None:
+    def _raise_bus_error(self, cleanup: bool = False) -> None:
+        """Raise the pending bus error, if any. cleanup: release the pipeline first (an open() that is failing)."""
         msg = self._pipe.get_bus().pop_filtered(self._gst.MessageType.ERROR)
         if msg is not None:
             err, _ = msg.parse_error()
+            if cleanup:
+                self._abandon()
             raise SourceError(f"GStreamer error: {err.message}")
+
+    def _abandon(self) -> None:
+        """Stop and drop a pipeline that never worked, so a retry starts from nothing."""
+        if self._pipe is not None:
+            self._pipe.set_state(self._gst.State.NULL)
+        self._pipe = self._sink = None
 
     def _to_array(self, sample: Any) -> tuple[np.ndarray, int | None]:
         caps = sample.get_caps().get_structure(0)

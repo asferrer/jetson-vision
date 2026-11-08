@@ -99,7 +99,8 @@ def test_test_source_is_live_and_shares_the_real_decode_tail():
     mj = camera_launch(parse_camera_uri("cam:test?fmt=mjpg&frames=90"))
     assert "videotestsrc is-live=true pattern=ball num-buffers=90" in mj and "jpegenc" in mj
     assert mj.index("jpegenc") < mj.index("nvv4l2decoder mjpeg=1") and mj.endswith(LIVE_SINK)
-    assert "num-buffers" not in camera_launch(parse_camera_uri("cam:test?fmt=yuy2"))
+    yuy2 = camera_launch(parse_camera_uri("cam:test?fmt=yuy2"))
+    assert "num-buffers" not in yuy2 and "queue max-size-buffers=2 leaky=downstream" in yuy2  # generator in its own thread
 
 
 def test_required_elements_name_what_each_chain_needs():

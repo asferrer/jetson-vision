@@ -30,6 +30,7 @@ _ELEMENT_HINTS = {
     "nvv4l2decoder": "JetPack's NVIDIA decoder (Jetson only); use hw=0 for a software decoder",
     "nvvidconv": "JetPack's nvvidconv (Jetson only)",
 }
+_TEST_QUEUE = "queue max-size-buffers=2 leaky=downstream"
 SLICE_S = 0.5  # pull in short slices so a device error on the bus is noticed at once, not after the silence timeout
 
 
@@ -135,12 +136,13 @@ def _rtsp_head(spec: CameraSpec) -> str:
 
 
 def _test_head(spec: CameraSpec) -> str:
-    """videotestsrc as a live camera. mjpg is encoded so the real decode tail is exercised."""
+    """videotestsrc as a live camera. A leaky queue puts the generator in its own thread, as a real sensor is, so the
+    pattern cost does not slow the conversion. mjpg is encoded so the real decode tail is exercised."""
     num = f" num-buffers={spec.frames}" if spec.frames else ""
     src = f"videotestsrc is-live=true pattern=ball{num}"
     if spec.fmt == "mjpg":
-        return f"{src} ! {_caps(spec)} ! videoconvert ! jpegenc ! {_caps(spec, 'image/jpeg')}"
-    return f"{src} ! {_caps(spec, fmt=spec.fmt.upper())}"
+        return f"{src} ! {_caps(spec)} ! {_TEST_QUEUE} ! videoconvert ! jpegenc ! {_caps(spec, 'image/jpeg')}"
+    return f"{src} ! {_caps(spec, fmt=spec.fmt.upper())} ! {_TEST_QUEUE}"
 
 
 def camera_launch(spec: CameraSpec) -> str:

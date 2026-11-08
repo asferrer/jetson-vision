@@ -1,0 +1,4 @@
+Power-mode sweep notes
+7W (id 3): not measured. nvpmodel reports "Reboot required for changing to this power mode"; no reboot was requested or forced, so the mode was skipped.
+15W reference: sections 5 and 13 of docs/VALIDATION.md (those runs passed --baseline 30:26.5,15:37.2; the runs here omit it, because that baseline was measured at 15W and would be wrong in another mode).
+Each mode: nvpmodel set, verified with nvpmodel -q, 60 s settle, dynamic clocks (jetson_clocks not used). Tj stayed below 85 C (guard never triggered). The board was returned to 15W afterwards.

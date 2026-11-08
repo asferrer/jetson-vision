@@ -1,0 +1,30 @@
+[Unit]
+Description=jetson-vision real-time debris detection
+After=network.target
+# Restart limits: do not loop forever if the engine does not load.
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=notify
+NotifyAccess=main
+User=jetson-vision
+Group=jetson-vision
+SupplementaryGroups=video
+EnvironmentFile=/etc/jetson-vision/env
+StateDirectory=jetson-vision
+LogsDirectory=jetson-vision
+# The heartbeat (WATCHDOG=1) is sent by the process only while it keeps producing results, so a
+# hang in CUDA or in the camera stops the heartbeat and systemd restarts the service.
+WatchdogSec=30
+ExecStart=/opt/jetson-vision/venv/bin/jv run --source ${JV_SOURCE} --model ${JV_MODEL} \
+    --sink jsonl:/var/log/jetson-vision/results.jsonl --watchdog
+# ($$ escapes systemd's own expansion.) Records why the previous run ended, so the next start writes it into the JSONL log.
+ExecStopPost=/bin/sh -c 'echo "$$SERVICE_RESULT/$$EXIT_STATUS" > /var/lib/jetson-vision/last_stop_cause'
+Restart=on-failure
+RestartSec=5
+# Exit status 3 = the health monitor ordered an orderly stop (level 3): do not restart into a hot box.
+RestartPreventExitStatus=3
+
+[Install]
+WantedBy=multi-user.target

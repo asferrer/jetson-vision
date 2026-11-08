@@ -1,0 +1,24 @@
+[Unit]
+Description=jetson-vision real-time debris detection (user service, no root)
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+# Same behaviour as jetson-vision.service, for `systemctl --user`: no User=, Group= or StateDirectory= (they need the
+# system manager). Paths are under the home directory. Install with:
+#   mkdir -p ~/.config/systemd/user && cp deploy/jetson-vision.user.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user start jetson-vision
+# Without `loginctl enable-linger <user>` the user manager stops when the last session ends.
+[Service]
+Type=notify
+NotifyAccess=main
+EnvironmentFile=%h/jetson-vision/env
+WatchdogSec=30
+ExecStart=%h/jetson-vision/venv/bin/jv run --source ${JV_SOURCE} --model ${JV_MODEL} \
+    --sink jsonl:%h/jetson-vision/logs/results.jsonl --watchdog
+ExecStopPost=/bin/sh -c 'echo "$$SERVICE_RESULT/$$EXIT_STATUS" > %h/jetson-vision/last_stop_cause'
+Restart=on-failure
+RestartSec=5
+RestartPreventExitStatus=3
+
+[Install]
+WantedBy=default.target

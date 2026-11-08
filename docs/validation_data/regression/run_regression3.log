@@ -1,0 +1,13 @@
+== rfdetr_int8g_subset thr=0.45 box_tol=0.5 17:36:10
+replay identical
+replay exit 0
+== rfdetr_int8g_full thr=0.45 box_tol=0.5 17:36:22
+replay identical
+replay exit 0
+== rtdetrv2_int8mix_subset thr=0.6 box_tol=5 17:37:40
+replay identical
+replay exit 0
+== rtdetrv2_int8mix_full thr=0.6 box_tol=5 17:37:53
+replay identical
+replay exit 0
+ALLDONE

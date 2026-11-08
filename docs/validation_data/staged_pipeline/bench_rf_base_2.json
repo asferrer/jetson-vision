@@ -1,0 +1,46 @@
+{
+ "backend": "tensorrt",
+ "model": "rfdetr_exp07_qG_int8",
+ "captured": 1800,
+ "processed": 1800,
+ "published": 1800,
+ "dropped": 0,
+ "reconnects": 0,
+ "backend_errors": 0,
+ "sink_errors": 0,
+ "fps": 31.01968857078398,
+ "stages": {
+  "capture": {
+   "p50_ms": 1.443604,
+   "p95_ms": 2.13798585
+  },
+  "preprocess": {
+   "p50_ms": 3.0975335,
+   "p95_ms": 4.358539400000001
+  },
+  "inference": {
+   "p50_ms": 26.958449,
+   "p95_ms": 27.10926835
+  },
+  "postprocess": {
+   "p50_ms": 1.751164,
+   "p95_ms": 1.83423
+  },
+  "tracking": {
+   "p50_ms": 0.0,
+   "p95_ms": 0.0
+  },
+  "queue": {
+   "p50_ms": 159.29348149999998,
+   "p95_ms": 162.69199440000003
+  },
+  "service": {
+   "p50_ms": 31.9583985,
+   "p95_ms": 33.29671195
+  },
+  "total": {
+   "p50_ms": 191.44453800000002,
+   "p95_ms": 195.3752797
+  }
+ }
+}

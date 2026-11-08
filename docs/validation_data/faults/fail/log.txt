@@ -1,0 +1,51 @@
+[18:47:34] T1 source killed, SIGSTOP and recovery under systemctl --user
+[18:47:34] sender A pid 179702
+[18:47:54] service started
+MainPID=179577 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:47:55] sender KILLED (source silent); waiting 35 s, WatchdogSec=10
+MainPID=179577 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:48:30] sender B pid 179930
+MainPID=179577 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:48:55] SIGSTOP on MainPID 179577
+[18:49:00] t+5 s
+MainPID=179577 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:49:05] t+10 s
+MainPID=0 Result=watchdog NRestarts=0 ExecMainStatus=6 ActiveState=activating SubState=auto-restart 
+[18:49:10] t+15 s
+MainPID=180062 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=activating SubState=start 
+[18:49:15] t+20 s
+MainPID=180062 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:49:20] t+25 s
+MainPID=180062 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+MainPID=180062 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+results 536 sessions ['18f9caa0'] starts ['watchdog/ABRT']
+watchdog/ABRT
+-- No entries --
+[18:49:40] stop service
+MainPID=0 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=inactive SubState=dead 
+[18:49:41] T2 manifest with a wrong sha256
+MainPID=0 Result=exit-code NRestarts=1 ExecMainStatus=1 ActiveState=activating SubState=auto-restart 
+MainPID=0 Result=exit-code NRestarts=3 ExecMainStatus=1 ActiveState=activating SubState=auto-restart 
+MainPID=0 Result=exit-code NRestarts=5 ExecMainStatus=1 ActiveState=failed SubState=failed 
+MainPID=0 Result=exit-code NRestarts=5 ExecMainStatus=1 ActiveState=failed SubState=failed 
+MainPID=0 Result=exit-code NRestarts=5 ExecMainStatus=1 ActiveState=failed SubState=failed 
+MainPID=0 Result=exit-code NRestarts=5 ExecMainStatus=1 ActiveState=failed SubState=failed 
+jv: engine refused: engine rfdetr_exp07_qG_int8.engine does not match manifest 'rfdetr_exp07_qG_int8': SHA-256 is f7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657, the manifest expects a7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657. Use the engine that the manifest describes.
+jv: engine refused: engine rfdetr_exp07_qG_int8.engine does not match manifest 'rfdetr_exp07_qG_int8': SHA-256 is f7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657, the manifest expects a7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657. Use the engine that the manifest describes.
+[18:50:43] direct run with bad hash: exit 1 (log: hash_direct.log)
+[18:50:43] T3 full disk: sink on /dev/full, with a good sink next to it
+[18:51:04] exit 0
+results 480 sessions ['e0caf6ab'] starts ['unknown']
+[18:51:04] T4 blocked sink (FIFO nobody reads), direct run, SIGTERM-like stop at 20 s
+[18:52:35] exit 137 after 90 s (20 s requested)
+results 88 sessions ['4d905cda'] starts ['unknown']
+[18:52:35] T4b blocked sink under the service: results.jsonl is a FIFO
+MainPID=181020 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+MainPID=0 Result=watchdog NRestarts=0 ExecMainStatus=6 ActiveState=activating SubState=auto-restart 
+MainPID=181158 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+MainPID=181158 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+MainPID=181294 Result=success NRestarts=2 ExecMainStatus=0 ActiveState=activating SubState=start 
+MainPID=181294 Result=success NRestarts=2 ExecMainStatus=0 ActiveState=activating SubState=start 
+MainPID=181294 Result=success NRestarts=2 ExecMainStatus=0 ActiveState=activating SubState=start 
+-- No entries --
+[18:53:42] DONE

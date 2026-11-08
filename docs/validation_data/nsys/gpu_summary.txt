@@ -1,0 +1,4 @@
+trace window (first to last kernel): 60.0 s
+GPU kernel busy: 42.11 s = 70 % of the window; 405560 kernel launches
+inferences in the window (count of one attention kernel): 1741 -> 29.0 per second, 24.2 ms of kernels per inference
+memcpy: 0.12 s (0.2 % of the window), 5221 copies, 1665 MB

@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/e2e/rfdetr_int8g_1280x720_30fps_fixed/run.jsonl",
+ "results": 1800,
+ "delivered_by_source": 1800,
+ "dropped": 0,
+ "dropped_pct": 0.0,
+ "span_s": 59.961363651,
+ "fps": 30.002653216343212,
+ "skipped_warmup": 30,
+ "mean_detections": 0.8177777777777778,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.305902,
+   "p95_ms": 33.3932522,
+   "p99_ms": 33.49044019,
+   "max_ms": 38.290165
+  },
+  "preprocess": {
+   "p50_ms": 1.144658,
+   "p95_ms": 2.00516485,
+   "p99_ms": 2.4075860899999917,
+   "max_ms": 7.251705
+  },
+  "inference": {
+   "p50_ms": 25.935727,
+   "p95_ms": 26.1410656,
+   "p99_ms": 26.360879689999997,
+   "max_ms": 28.209601
+  },
+  "postprocess": {
+   "p50_ms": 1.070622,
+   "p95_ms": 1.1372954,
+   "p99_ms": 1.2449297899999998,
+   "max_ms": 2.945216
+  },
+  "queue": {
+   "p50_ms": 0.1824875,
+   "p95_ms": 0.23328245,
+   "p99_ms": 0.29576883999999926,
+   "max_ms": 1.871409
+  },
+  "service": {
+   "p50_ms": 28.2835575,
+   "p95_ms": 29.1606318,
+   "p99_ms": 30.88984227999999,
+   "max_ms": 34.941765
+  },
+  "total": {
+   "p50_ms": 28.48515,
+   "p95_ms": 29.354904349999998,
+   "p99_ms": 31.36215315999999,
+   "max_ms": 35.262994
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 36,
+  "proc_cores_mean": 0.5217222222222221,
+  "proc_cores_max": 0.859,
+  "rss_mb_mean": 1001.5944444444447,
+  "rss_mb_max": 1004.5,
+  "rss_mb_first": 1003.9,
+  "rss_mb_last": 912.9,
+  "ram_used_mb_max": 2562.8,
+  "temp_max_c": 56.7,
+  "temp_mean_c": 56.03333333333333,
+  "gpu_mhz_mean": 612.0,
+  "gpu_mhz_min": 612.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 1498.0
+ },
+ "tegrastats": {
+  "samples": 38,
+  "ram_mb_mean": 2677.4210526315787,
+  "ram_mb_max": 2717.0,
+  "cpu_pct_mean_per_core": 27.3421052631579,
+  "gr3d_pct_mean": 67.47368421052632,
+  "gr3d_mhz_mean": 611.1578947368421,
+  "vdd_in_w_mean": 9.980684210526315,
+  "vdd_in_w_max": 10.464,
+  "tj_max_c": 56.562,
+  "emc_pct_mean": 30.57894736842105,
+  "nvdec_active_samples": 36,
+  "vic_active_samples": 36
+ }
+}

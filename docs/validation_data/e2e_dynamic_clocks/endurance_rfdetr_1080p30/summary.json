@@ -1,0 +1,393 @@
+{
+ "jsonl": "out/e2e/endurance_rfdetr_1080p30/run.jsonl",
+ "results": 57477,
+ "delivered_by_source": 57480,
+ "dropped": 3,
+ "dropped_pct": 0.005219206680584551,
+ "span_s": 1916.005916687,
+ "fps": 29.99781968282372,
+ "skipped_warmup": 30,
+ "mean_detections": 0.8671990535344573,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.308494,
+   "p95_ms": 33.6065731,
+   "p99_ms": 34.11055838,
+   "max_ms": 44.898799
+  },
+  "preprocess": {
+   "p50_ms": 4.73123,
+   "p95_ms": 5.5787266,
+   "p99_ms": 5.86957334,
+   "max_ms": 21.914986
+  },
+  "inference": {
+   "p50_ms": 26.412512,
+   "p95_ms": 26.7106107,
+   "p99_ms": 27.876058000000004,
+   "max_ms": 32.661761
+  },
+  "postprocess": {
+   "p50_ms": 1.702341,
+   "p95_ms": 1.85568,
+   "p99_ms": 3.0136984000000004,
+   "max_ms": 7.674998
+  },
+  "queue": {
+   "p50_ms": 6.475247,
+   "p95_ms": 8.4028539,
+   "p99_ms": 12.462045360000001,
+   "max_ms": 23.231918
+  },
+  "service": {
+   "p50_ms": 33.080793,
+   "p95_ms": 34.061025099999995,
+   "p99_ms": 37.01086248,
+   "max_ms": 50.182271
+  },
+  "total": {
+   "p50_ms": 39.850496,
+   "p95_ms": 41.7284796,
+   "p99_ms": 45.761161279999996,
+   "max_ms": 55.990043
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 1890,
+  "proc_cores_mean": 0.9690137566137564,
+  "proc_cores_max": 1.079,
+  "rss_mb_mean": 1099.673492063492,
+  "rss_mb_max": 1110.4,
+  "rss_mb_first": 1049.9,
+  "rss_mb_last": 986.7,
+  "ram_used_mb_max": 2659.8,
+  "temp_max_c": 60.2,
+  "temp_mean_c": 59.15132275132275,
+  "gpu_mhz_mean": 611.8380952380952,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 921.7365079365079
+ },
+ "tegrastats": {
+  "samples": 1865,
+  "ram_mb_mean": 2793.879892761394,
+  "ram_mb_max": 2820.0,
+  "cpu_pct_mean_per_core": 34.57667560321716,
+  "gr3d_pct_mean": 73.82144772117962,
+  "gr3d_mhz_mean": 610.6423592493297,
+  "vdd_in_w_mean": 10.64562144772118,
+  "vdd_in_w_max": 11.256,
+  "tj_max_c": 60.156,
+  "emc_pct_mean": 33.96621983914209,
+  "nvdec_active_samples": 1862,
+  "vic_active_samples": 1862
+ },
+ "windows": [
+  {
+   "window": 0,
+   "start_s": 0.0,
+   "frames": 1798,
+   "total_p50_ms": 40.6317555,
+   "total_p95_ms": 43.381158049999996,
+   "inference_p50_ms": 26.434957,
+   "dropped": 3
+  },
+  {
+   "window": 1,
+   "start_s": 60.0,
+   "frames": 1799,
+   "total_p50_ms": 37.308285,
+   "total_p95_ms": 41.85427919999999,
+   "inference_p50_ms": 26.415203,
+   "dropped": 0
+  },
+  {
+   "window": 2,
+   "start_s": 120.0,
+   "frames": 1800,
+   "total_p50_ms": 40.493546,
+   "total_p95_ms": 42.35286715,
+   "inference_p50_ms": 26.4345085,
+   "dropped": 0
+  },
+  {
+   "window": 3,
+   "start_s": 180.0,
+   "frames": 1800,
+   "total_p50_ms": 40.620091,
+   "total_p95_ms": 41.8322864,
+   "inference_p50_ms": 26.428606,
+   "dropped": 0
+  },
+  {
+   "window": 4,
+   "start_s": 240.0,
+   "frames": 1800,
+   "total_p50_ms": 39.6988765,
+   "total_p95_ms": 41.844534700000004,
+   "inference_p50_ms": 26.417088,
+   "dropped": 0
+  },
+  {
+   "window": 5,
+   "start_s": 300.0,
+   "frames": 1800,
+   "total_p50_ms": 40.250063999999995,
+   "total_p95_ms": 42.0758469,
+   "inference_p50_ms": 26.4069175,
+   "dropped": 0
+  },
+  {
+   "window": 6,
+   "start_s": 360.0,
+   "frames": 1800,
+   "total_p50_ms": 39.7680285,
+   "total_p95_ms": 41.5041628,
+   "inference_p50_ms": 26.4013385,
+   "dropped": 0
+  },
+  {
+   "window": 7,
+   "start_s": 420.0,
+   "frames": 1800,
+   "total_p50_ms": 40.45986,
+   "total_p95_ms": 41.6575323,
+   "inference_p50_ms": 26.423824500000002,
+   "dropped": 0
+  },
+  {
+   "window": 8,
+   "start_s": 480.0,
+   "frames": 1800,
+   "total_p50_ms": 39.132619,
+   "total_p95_ms": 41.60885965,
+   "inference_p50_ms": 26.421673499999997,
+   "dropped": 0
+  },
+  {
+   "window": 9,
+   "start_s": 540.0,
+   "frames": 1800,
+   "total_p50_ms": 40.311242,
+   "total_p95_ms": 41.581033749999996,
+   "inference_p50_ms": 26.4169965,
+   "dropped": 0
+  },
+  {
+   "window": 10,
+   "start_s": 600.0,
+   "frames": 1800,
+   "total_p50_ms": 39.510121,
+   "total_p95_ms": 41.71329765,
+   "inference_p50_ms": 26.416829,
+   "dropped": 0
+  },
+  {
+   "window": 11,
+   "start_s": 660.0,
+   "frames": 1800,
+   "total_p50_ms": 39.095953,
+   "total_p95_ms": 41.7458834,
+   "inference_p50_ms": 26.4160285,
+   "dropped": 0
+  },
+  {
+   "window": 12,
+   "start_s": 720.0,
+   "frames": 1800,
+   "total_p50_ms": 40.3861835,
+   "total_p95_ms": 41.5748324,
+   "inference_p50_ms": 26.410508,
+   "dropped": 0
+  },
+  {
+   "window": 13,
+   "start_s": 780.0,
+   "frames": 1800,
+   "total_p50_ms": 40.0203805,
+   "total_p95_ms": 42.02795825,
+   "inference_p50_ms": 26.394667499999997,
+   "dropped": 0
+  },
+  {
+   "window": 14,
+   "start_s": 840.0,
+   "frames": 1800,
+   "total_p50_ms": 40.296083,
+   "total_p95_ms": 42.0962427,
+   "inference_p50_ms": 26.4096135,
+   "dropped": 0
+  },
+  {
+   "window": 15,
+   "start_s": 900.0,
+   "frames": 1800,
+   "total_p50_ms": 36.782583,
+   "total_p95_ms": 41.5377111,
+   "inference_p50_ms": 26.4057505,
+   "dropped": 0
+  },
+  {
+   "window": 16,
+   "start_s": 960.0,
+   "frames": 1800,
+   "total_p50_ms": 40.306742,
+   "total_p95_ms": 41.737811799999996,
+   "inference_p50_ms": 26.4157335,
+   "dropped": 0
+  },
+  {
+   "window": 17,
+   "start_s": 1020.0,
+   "frames": 1800,
+   "total_p50_ms": 39.862221,
+   "total_p95_ms": 41.62304235,
+   "inference_p50_ms": 26.40222,
+   "dropped": 0
+  },
+  {
+   "window": 18,
+   "start_s": 1080.0,
+   "frames": 1800,
+   "total_p50_ms": 37.697813499999995,
+   "total_p95_ms": 41.4456614,
+   "inference_p50_ms": 26.40972,
+   "dropped": 0
+  },
+  {
+   "window": 19,
+   "start_s": 1140.0,
+   "frames": 1800,
+   "total_p50_ms": 39.709393500000004,
+   "total_p95_ms": 41.49420715,
+   "inference_p50_ms": 26.3998415,
+   "dropped": 0
+  },
+  {
+   "window": 20,
+   "start_s": 1200.0,
+   "frames": 1800,
+   "total_p50_ms": 40.320383500000005,
+   "total_p95_ms": 42.1587697,
+   "inference_p50_ms": 26.4123765,
+   "dropped": 0
+  },
+  {
+   "window": 21,
+   "start_s": 1260.0,
+   "frames": 1800,
+   "total_p50_ms": 37.692464,
+   "total_p95_ms": 41.8839198,
+   "inference_p50_ms": 26.417837499999997,
+   "dropped": 0
+  },
+  {
+   "window": 22,
+   "start_s": 1320.0,
+   "frames": 1800,
+   "total_p50_ms": 39.1938275,
+   "total_p95_ms": 41.607183,
+   "inference_p50_ms": 26.405731,
+   "dropped": 0
+  },
+  {
+   "window": 23,
+   "start_s": 1380.0,
+   "frames": 1800,
+   "total_p50_ms": 40.2442425,
+   "total_p95_ms": 41.95454185,
+   "inference_p50_ms": 26.411544,
+   "dropped": 0
+  },
+  {
+   "window": 24,
+   "start_s": 1440.0,
+   "frames": 1799,
+   "total_p50_ms": 39.986405,
+   "total_p95_ms": 41.5977037,
+   "inference_p50_ms": 26.405948,
+   "dropped": 0
+  },
+  {
+   "window": 25,
+   "start_s": 1500.0,
+   "frames": 1800,
+   "total_p50_ms": 40.1390535,
+   "total_p95_ms": 41.924942400000006,
+   "inference_p50_ms": 26.4026245,
+   "dropped": 0
+  },
+  {
+   "window": 26,
+   "start_s": 1560.0,
+   "frames": 1800,
+   "total_p50_ms": 31.16085,
+   "total_p95_ms": 41.248977350000004,
+   "inference_p50_ms": 26.4175555,
+   "dropped": 0
+  },
+  {
+   "window": 27,
+   "start_s": 1620.0,
+   "frames": 1800,
+   "total_p50_ms": 40.1563605,
+   "total_p95_ms": 41.759779800000004,
+   "inference_p50_ms": 26.408375,
+   "dropped": 0
+  },
+  {
+   "window": 28,
+   "start_s": 1680.0,
+   "frames": 1800,
+   "total_p50_ms": 39.647726,
+   "total_p95_ms": 41.639603,
+   "inference_p50_ms": 26.404184,
+   "dropped": 0
+  },
+  {
+   "window": 29,
+   "start_s": 1740.0,
+   "frames": 1800,
+   "total_p50_ms": 31.413683499999998,
+   "total_p95_ms": 41.5494122,
+   "inference_p50_ms": 26.3983575,
+   "dropped": 0
+  },
+  {
+   "window": 30,
+   "start_s": 1800.0,
+   "frames": 1800,
+   "total_p50_ms": 36.809345,
+   "total_p95_ms": 41.68217665,
+   "inference_p50_ms": 26.403395500000002,
+   "dropped": 0
+  },
+  {
+   "window": 31,
+   "start_s": 1860.0,
+   "frames": 1681,
+   "total_p50_ms": 31.718784,
+   "total_p95_ms": 41.43593,
+   "inference_p50_ms": 26.422619,
+   "dropped": 0
+  }
+ ],
+ "drift_total_p50": {
+  "slope_ms_per_hour": -6.492552979838678,
+  "first_ms": 40.6317555,
+  "last_ms": 36.809345,
+  "min_ms": 31.16085,
+  "max_ms": 40.6317555
+ },
+ "drift_inference_p50": {
+  "slope_ms_per_hour": -0.03908460483869165,
+  "first_ms": 26.434957,
+  "last_ms": 26.403395500000002,
+  "min_ms": 26.394667499999997,
+  "max_ms": 26.434957
+ }
+}

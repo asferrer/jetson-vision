@@ -1,0 +1,18 @@
+jetson-vision
+Copyright 2026 Alejandro Sanchez Ferrer
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party components and data. None of them is redistributed in this repository; each keeps its own license.
+
+- RF-DETR (Roboflow), https://github.com/roboflow/rf-detr. Code and the Nano/Small/Medium/Large detection weights are
+  Apache-2.0; the XL size is under the Roboflow Platform Model License. The default manifest describes an engine built
+  from a fine-tuned checkpoint of this architecture.
+- RT-DETRv2 (Lv et al.), https://github.com/lyuwenyu/RT-DETR, Apache-2.0. The second manifest describes an engine built
+  from a fine-tuned checkpoint.
+- NVIDIA TensorRT, CUDA, JetPack, NVDEC/VIC GStreamer plugins: NVIDIA proprietary licenses, installed on the device
+  (JetPack). Not distributed here. tools/reference and the TensorRT backend import them at run time only.
+- PyTorch (BSD-3-Clause), NumPy (BSD-3-Clause), OpenCV (Apache-2.0), PyYAML (MIT), pycocotools (BSD-2-Clause, only for
+  the AP regression scripts), ROS 2 Humble and vision_msgs (Apache-2.0, only for the optional adapter).
+- CleanSea dataset (Sanchez-Ferrer et al., IbPRIA 2022) and the other images behind the validation split: used only to
+  measure AP and to build the synthetic test clips. Images are not included; check the dataset terms before reuse.

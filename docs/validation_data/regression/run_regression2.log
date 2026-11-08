@@ -1,0 +1,25 @@
+== rfdetr_int8g_subset 17:23:31
+DIFF frame 40: detections differ beyond tolerance
+replay differs: 63 problems
+replay exit 1
+{"model": "rfdetr_exp07_qG_int8", "n_images": 160, "n_predictions": 47989, "AP": 48.257360807966215, "AP50": 67.86276216381707, "reference_ap": 43.45, "diff_vs_reference": 4.807360807966212}
+{"model": "rfdetr_exp07_qG_int8", "n_images": 160, "n_predictions": 47989, "AP": 48.257044390853935, "AP50": 67.86150673825306, "reference_ap": 43.45, "diff_vs_reference": 4.807044390853932}
+== rfdetr_int8g_full 17:23:58
+DIFF frame 37: detections differ beyond tolerance
+replay differs: 759 problems
+replay exit 1
+{"model": "rfdetr_exp07_qG_int8", "n_images": 2185, "n_predictions": 655283, "AP": 43.44543657810311, "AP50": 63.89562704312377, "reference_ap": 43.45, "diff_vs_reference": -0.004563421896889963}
+{"model": "rfdetr_exp07_qG_int8", "n_images": 2185, "n_predictions": 655284, "AP": 43.44543610628037, "AP50": 63.89562087371184, "reference_ap": 43.45, "diff_vs_reference": -0.004563893719634393}
+== rtdetrv2_int8mix_subset 17:28:45
+DIFF frame 119: detections differ beyond tolerance
+replay differs: 60 problems
+replay exit 1
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 160, "n_predictions": 48000, "AP": 42.970514777669656, "AP50": 63.84003121165587, "reference_ap": 43.61, "diff_vs_reference": -0.6394852223303431}
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 160, "n_predictions": 48000, "AP": 43.03528793961218, "AP50": 63.78803265540382, "reference_ap": 43.61, "diff_vs_reference": -0.5747120603878173}
+== rtdetrv2_int8mix_full 17:29:14
+DIFF frame 19: detections differ beyond tolerance
+replay differs: 173 problems
+replay exit 1
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 2185, "n_predictions": 655500, "AP": 43.605172407203305, "AP50": 63.24025076432467, "reference_ap": 43.61, "diff_vs_reference": -0.004827592796694091}
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 2185, "n_predictions": 655500, "AP": 43.61458197766557, "AP50": 63.252435071369426, "reference_ap": 43.61, "diff_vs_reference": 0.0045819776655733335}
+ALLDONE

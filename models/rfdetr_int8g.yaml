@@ -1,0 +1,35 @@
+# RF-DETR INT8 G (attention + fc1), checkpoint rfdetr_exp07. Default detector.
+# Engine directory: pass --model-dir or set JV_MODEL_DIR. Engines are never committed.
+schema: 1
+model_id: rfdetr_exp07_qG_int8
+engine:
+  file: rfdetr_exp07_qG_int8.engine
+  sha256: f7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657
+  tensorrt: "10.3.0"
+  gpu: {arch: sm_87, name: Orin, sm_count: 8}   # Jetson Orin Nano
+input:
+  tensor: input                 # 1x3x560x560 float32
+  width: 560
+  height: 560
+  channel_order: rgb
+  interpolation: linear         # cv2 INTER_LINEAR on uint8 (tools/reference/stages.py, pre=u8gpu)
+  normalization:                # x / 255, then ImageNet mean and std
+    divide_by: 255.0
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+decoder:
+  name: rfdetr                  # outputs: dets (1,300,4) cxcywh normalised; labels (1,300,9) logits
+  num_select: 300
+  outputs: [dets, labels]
+classes:
+  names: [Bottle, Can, Fishing_Net, Glove, Mask, Metal_Debris, Plastic_Debris, Tire]
+  label_offset: 0
+  ignore_labels: [8]            # the head has 9 outputs for 8 classes; the 9th is spurious
+score_threshold: 0.45           # micro-F1 peak of this engine on VAL (2185 images, IoU 0.5): 0.7521; 0.6 gives 0.7285
+                                # source: docs/validation_data/regression/f1_rfdetr.json (tests/core/jetson_f1.py). The 0.6 of the
+                                # Android app belongs to RT-DETRv2 and is not valid for this engine. VAL only, never TEST;
+                                # real underwater footage may need another value.
+reference_ap:
+  value: 43.45
+  subset: "VAL, 2185 images, loop with cv2 INTER_LINEAR resize"
+  source: "author's prototype, tools/reference/stages.py (pre=u8gpu). Measured with this chain's preprocessing; the same engine with a PIL resize gives 43.32 (43.31 in the training-side evaluation)"

@@ -1,0 +1,29 @@
+[18:54:31] T1 source killed, SIGSTOP and recovery under systemctl --user
+[18:54:32] sender A pid 181537
+[18:54:56] service started
+MainPID=181543 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+results 571 sessions ['7ff63eb8'] starts ['unknown']
+[18:54:56] sender KILLED (source silent); waiting 35 s, WatchdogSec=10
+MainPID=181543 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+silent-warnings: 5
+results 573 sessions ['7ff63eb8'] starts ['unknown']
+[18:55:31] sender B pid 181863
+MainPID=181543 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+results 1139 sessions ['7ff63eb8'] starts ['unknown']
+[18:55:56] SIGSTOP on MainPID 181543
+[18:56:01] t+5 s
+MainPID=181543 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:56:06] t+10 s
+MainPID=181543 Result=watchdog NRestarts=0 ExecMainStatus=0 ActiveState=deactivating SubState=stop-watchdog 
+[18:56:11] t+15 s
+MainPID=0 Result=watchdog NRestarts=0 ExecMainStatus=6 ActiveState=activating SubState=auto-restart 
+[18:56:16] t+20 s
+MainPID=182065 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+[18:56:21] t+25 s
+MainPID=182065 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+MainPID=182065 Result=success NRestarts=1 ExecMainStatus=0 ActiveState=active SubState=running 
+results 1586 sessions ['6a00ceea', '7ff63eb8'] starts ['unknown', 'watchdog/ABRT']
+watchdog/ABRT
+-- No entries --
+[18:56:41] stop service
+MainPID=0 Result=success NRestarts=0 ExecMainStatus=0 ActiveState=inactive SubState=dead 

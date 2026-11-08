@@ -1,0 +1,17 @@
+== rfdetr_int8g_subset 17:10:12
+{"model": "rfdetr_exp07_qG_int8", "n_images": 160, "n_predictions": 47989, "AP": 48.2570471055894, "AP50": 67.8615107432201, "reference_ap": 43.45, "diff_vs_reference": 4.8070471055893975}
+replay differs: 160 problems
+replay exit 1
+== rfdetr_int8g_full 17:10:50
+{"model": "rfdetr_exp07_qG_int8", "n_images": 2185, "n_predictions": 655284, "AP": 43.44543773549805, "AP50": 63.89562542352357, "reference_ap": 43.45, "diff_vs_reference": -0.004562264501956292}
+replay differs: 2185 problems
+replay exit 1
+== rtdetrv2_int8mix_subset 17:16:32
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 160, "n_predictions": 48000, "AP": 42.970514777669656, "AP50": 63.84003121165587, "reference_ap": 43.61, "diff_vs_reference": -0.6394852223303431}
+replay differs: 160 problems
+replay exit 1
+== rtdetrv2_int8mix_full 17:17:11
+{"model": "rtdetrv2_exp08s3_int8mix_stem", "n_images": 2185, "n_predictions": 655500, "AP": 43.605172407203305, "AP50": 63.24025076432467, "reference_ap": 43.61, "diff_vs_reference": -0.004827592796694091}
+replay differs: 173 problems
+replay exit 1
+ALLDONE

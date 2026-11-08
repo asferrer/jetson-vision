@@ -1,0 +1,46 @@
+{
+ "backend": "tensorrt",
+ "model": "rtdetrv2_exp08s3_int8mix_stem",
+ "captured": 1800,
+ "processed": 1800,
+ "published": 1800,
+ "dropped": 0,
+ "reconnects": 0,
+ "backend_errors": 0,
+ "sink_errors": 0,
+ "fps": 34.57698593978926,
+ "stages": {
+  "capture": {
+   "p50_ms": 1.634423,
+   "p95_ms": 5.200228
+  },
+  "preprocess": {
+   "p50_ms": 7.721031999999999,
+   "p95_ms": 10.21537685
+  },
+  "inference": {
+   "p50_ms": 28.398613,
+   "p95_ms": 31.2920027
+  },
+  "postprocess": {
+   "p50_ms": 0.48804349999999996,
+   "p95_ms": 4.036875350000002
+  },
+  "tracking": {
+   "p50_ms": 0.0,
+   "p95_ms": 0.0
+  },
+  "queue": {
+   "p50_ms": 222.4616495,
+   "p95_ms": 231.15291349999998
+  },
+  "service": {
+   "p50_ms": 37.726291,
+   "p95_ms": 42.374758299999996
+  },
+  "total": {
+   "p50_ms": 260.604622,
+   "p95_ms": 270.72706304999997
+  }
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/e2e/rtdetrv2_int8mix_1920x1080_15fps/run.jsonl",
+ "results": 600,
+ "delivered_by_source": 600,
+ "dropped": 0,
+ "dropped_pct": 0.0,
+ "span_s": 39.929347628,
+ "fps": 15.001497284166948,
+ "skipped_warmup": 30,
+ "mean_detections": 1.0883333333333334,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 66.620434,
+   "p95_ms": 66.93461339999999,
+   "p99_ms": 67.04485020999999,
+   "max_ms": 73.815929
+  },
+  "preprocess": {
+   "p50_ms": 6.944409500000001,
+   "p95_ms": 10.4562742,
+   "p99_ms": 10.92127899,
+   "max_ms": 11.122471
+  },
+  "inference": {
+   "p50_ms": 37.754604,
+   "p95_ms": 43.60051615,
+   "p99_ms": 43.754802850000004,
+   "max_ms": 44.073469
+  },
+  "postprocess": {
+   "p50_ms": 0.4441235,
+   "p95_ms": 0.5037187999999999,
+   "p99_ms": 0.5331946299999994,
+   "max_ms": 0.993942
+  },
+  "queue": {
+   "p50_ms": 0.2888135,
+   "p95_ms": 0.35317255,
+   "p99_ms": 0.5280138899999999,
+   "max_ms": 0.60697
+  },
+  "service": {
+   "p50_ms": 48.392662,
+   "p95_ms": 54.25536345,
+   "p99_ms": 54.735188789999995,
+   "max_ms": 59.59433
+  },
+  "total": {
+   "p50_ms": 48.726769000000004,
+   "p95_ms": 54.5712112,
+   "p99_ms": 55.052959509999994,
+   "max_ms": 59.958838
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 16,
+  "proc_cores_mean": 0.7521875,
+  "proc_cores_max": 0.879,
+  "rss_mb_mean": 1091.63125,
+  "rss_mb_max": 1105.3,
+  "rss_mb_first": 1104.7,
+  "rss_mb_last": 893.2,
+  "ram_used_mb_max": 2630.6,
+  "temp_max_c": 55.5,
+  "temp_mean_c": 55.11875,
+  "gpu_mhz_mean": 554.625,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 1114.0
+ },
+ "tegrastats": {
+  "samples": 18,
+  "ram_mb_mean": 2702.6666666666665,
+  "ram_mb_max": 2798.0,
+  "cpu_pct_mean_per_core": 28.95370370370371,
+  "gr3d_pct_mean": 48.833333333333336,
+  "gr3d_mhz_mean": 548.7777777777778,
+  "vdd_in_w_mean": 7.619611111111111,
+  "vdd_in_w_max": 8.16,
+  "tj_max_c": 55.375,
+  "emc_pct_mean": 16.444444444444443,
+  "nvdec_active_samples": 15,
+  "vic_active_samples": 16
+ }
+}

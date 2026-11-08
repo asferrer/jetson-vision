@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/e2e/rfdetr_int8g_1280x720_15fps/run.jsonl",
+ "results": 600,
+ "delivered_by_source": 600,
+ "dropped": 0,
+ "dropped_pct": 0.0,
+ "span_s": 39.927630179,
+ "fps": 15.00214255929081,
+ "skipped_warmup": 30,
+ "mean_detections": 0.9083333333333333,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 66.6212505,
+   "p95_ms": 66.931134,
+   "p99_ms": 67.24850569999997,
+   "max_ms": 74.17427
+  },
+  "preprocess": {
+   "p50_ms": 2.293457,
+   "p95_ms": 3.9073363999999997,
+   "p99_ms": 4.19816367,
+   "max_ms": 5.598662
+  },
+  "inference": {
+   "p50_ms": 37.39833,
+   "p95_ms": 37.7512012,
+   "p99_ms": 37.856718799999996,
+   "max_ms": 38.949953
+  },
+  "postprocess": {
+   "p50_ms": 1.7684790000000001,
+   "p95_ms": 1.87521205,
+   "p99_ms": 2.0725027599999994,
+   "max_ms": 4.843723
+  },
+  "queue": {
+   "p50_ms": 0.264601,
+   "p95_ms": 0.3325939499999998,
+   "p99_ms": 0.4957758099999998,
+   "max_ms": 0.575669
+  },
+  "service": {
+   "p50_ms": 41.651889499999996,
+   "p95_ms": 43.579631649999996,
+   "p99_ms": 44.77815868999989,
+   "max_ms": 49.707133
+  },
+  "total": {
+   "p50_ms": 41.907849,
+   "p95_ms": 43.87435685,
+   "p99_ms": 45.03888704999989,
+   "max_ms": 49.989095
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 16,
+  "proc_cores_mean": 0.41431250000000003,
+  "proc_cores_max": 0.819,
+  "rss_mb_mean": 1000.0875,
+  "rss_mb_max": 1005.8,
+  "rss_mb_first": 1005.8,
+  "rss_mb_last": 914.4,
+  "ram_used_mb_max": 2534.3,
+  "temp_max_c": 54.9,
+  "temp_mean_c": 54.54375,
+  "gpu_mhz_mean": 439.875,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 778.0
+ },
+ "tegrastats": {
+  "samples": 18,
+  "ram_mb_mean": 2622.3888888888887,
+  "ram_mb_max": 2702.0,
+  "cpu_pct_mean_per_core": 23.342592592592595,
+  "gr3d_pct_mean": 42.5,
+  "gr3d_mhz_mean": 412.72222222222223,
+  "vdd_in_w_mean": 7.041388888888888,
+  "vdd_in_w_max": 7.539,
+  "tj_max_c": 54.75,
+  "emc_pct_mean": 14.666666666666666,
+  "nvdec_active_samples": 15,
+  "vic_active_samples": 16
+ }
+}

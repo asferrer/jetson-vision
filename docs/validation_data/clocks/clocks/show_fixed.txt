@@ -1,0 +1,13 @@
+SOC family:tegra234  Machine:NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super
+Online CPUs: 0-5
+cpu0:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+cpu1:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+cpu2:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+cpu3:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+cpu4:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+cpu5:  Online=1 Governor=schedutil MinFreq=1497600 MaxFreq=1497600 CurrentFreq=1497600 IdleStates: WFI=0 c7=0 
+GPU MinFreq=612000000 MaxFreq=612000000 CurrentFreq=612000000
+Active GPU TPCs: 4
+EMC MinFreq=204000000 MaxFreq=2133000000 CurrentFreq=2133000000 FreqOverride=1
+FAN Dynamic Speed Control=nvfancontrol hwmon0_pwm1=72
+NV Power Mode: 15W

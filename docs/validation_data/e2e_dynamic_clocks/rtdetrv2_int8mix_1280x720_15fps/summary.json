@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/e2e/rtdetrv2_int8mix_1280x720_15fps/run.jsonl",
+ "results": 600,
+ "delivered_by_source": 600,
+ "dropped": 0,
+ "dropped_pct": 0.0,
+ "span_s": 39.929226254,
+ "fps": 15.001542884643147,
+ "skipped_warmup": 30,
+ "mean_detections": 1.0466666666666666,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 66.62787850000001,
+   "p95_ms": 66.90604525,
+   "p99_ms": 67.01501971,
+   "max_ms": 74.627794
+  },
+  "preprocess": {
+   "p50_ms": 4.56597,
+   "p95_ms": 6.3234917,
+   "p99_ms": 6.4716378699999995,
+   "max_ms": 10.874952
+  },
+  "inference": {
+   "p50_ms": 37.506215,
+   "p95_ms": 43.4869473,
+   "p99_ms": 43.62863359,
+   "max_ms": 44.540937
+  },
+  "postprocess": {
+   "p50_ms": 0.4322545,
+   "p95_ms": 0.4897318,
+   "p99_ms": 0.5539846099999991,
+   "max_ms": 1.002143
+  },
+  "queue": {
+   "p50_ms": 0.27815999999999996,
+   "p95_ms": 0.45984434999999996,
+   "p99_ms": 0.5897679599999915,
+   "max_ms": 1.192511
+  },
+  "service": {
+   "p50_ms": 44.261788,
+   "p95_ms": 49.981988199999996,
+   "p99_ms": 50.58768347999998,
+   "max_ms": 56.042709
+  },
+  "total": {
+   "p50_ms": 44.5551095,
+   "p95_ms": 50.3222668,
+   "p99_ms": 51.00519462999999,
+   "max_ms": 56.403572
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 16,
+  "proc_cores_mean": 0.5191250000000001,
+  "proc_cores_max": 0.799,
+  "rss_mb_mean": 1053.475,
+  "rss_mb_max": 1064.5,
+  "rss_mb_first": 1064.3,
+  "rss_mb_last": 890.8,
+  "ram_used_mb_max": 2578.9,
+  "temp_max_c": 55.3,
+  "temp_mean_c": 54.94375,
+  "gpu_mhz_mean": 548.25,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 778.0
+ },
+ "tegrastats": {
+  "samples": 18,
+  "ram_mb_mean": 2658.0,
+  "ram_mb_max": 2747.0,
+  "cpu_pct_mean_per_core": 25.453703703703706,
+  "gr3d_pct_mean": 45.72222222222222,
+  "gr3d_mhz_mean": 531.7222222222222,
+  "vdd_in_w_mean": 7.469,
+  "vdd_in_w_max": 7.975,
+  "tj_max_c": 55.281,
+  "emc_pct_mean": 15.61111111111111,
+  "nvdec_active_samples": 15,
+  "vic_active_samples": 16
+ }
+}

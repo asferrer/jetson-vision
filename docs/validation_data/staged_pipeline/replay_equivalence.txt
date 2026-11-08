@@ -1,0 +1,1 @@
+replay of the 160-image subset at threshold 0.0 with the staged pipeline against the serial one (jv replay --reference): identical, exit 0

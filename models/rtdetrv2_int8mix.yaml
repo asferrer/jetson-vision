@@ -1,0 +1,31 @@
+# RT-DETRv2 INT8 mixed (stem), checkpoint exp08_real_synth_minor_s3. Second manifest: higher AP, 20 fps.
+# Engine directory: pass --model-dir or set JV_MODEL_DIR. Engines are never committed.
+schema: 1
+model_id: rtdetrv2_exp08s3_int8mix_stem
+engine:
+  file: rtdetrv2_exp08s3_int8mix_stem.engine
+  sha256: 787d3771cd15f7337593d44b0c4b975827bd839128932c9a0ec68af1a56d4053
+  tensorrt: "10.3.0"
+  gpu: {arch: sm_87, name: Orin, sm_count: 8}   # Jetson Orin Nano
+input:
+  tensor: images                # 1x3x640x640 float32
+  width: 640
+  height: 640
+  channel_order: rgb
+  interpolation: area_if_downscale   # cv2 INTER_AREA if frame height > 640, else INTER_LINEAR (build_int8_engine.preprocess)
+  normalization:                # x / 255 only
+    divide_by: 255.0
+  size_tensor: orig_target_sizes     # int32 (1,2); the backend feeds (W, H) of the network input, the decoder rescales
+decoder:
+  name: rtdetrv2                # outputs: labels int64 (300), boxes xyxy (300,4), scores (300)
+  num_select: 300
+  outputs: [labels, boxes, scores]
+classes:
+  names: [Bottle, Can, Fishing_Net, Glove, Mask, Metal_Debris, Plastic_Debris, Tire]
+  label_offset: 0
+  ignore_labels: []
+score_threshold: 0.6            # F1 optimum of this model on VAL in the Android app (04_arquitectura.md 2.2); recalibrate per engine
+reference_ap:
+  value: 43.61
+  subset: "VAL, 2185 images, loop with cv2 resize (engine fed the true frame size)"
+  source: "author's prototype, tools/reference/stages.py (pre=u8gpu)"

@@ -1,0 +1,25 @@
+[11/06/2026-17:04:17] [TRT] [W] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+{
+ "model": "rfdetr_exp07_qG_int8",
+ "n_images": 2185,
+ "best_micro": {
+  "threshold": 0.45,
+  "tp": 3234,
+  "fp": 812,
+  "fn": 1320,
+  "precision": 0.7993079584775087,
+  "recall": 0.7101449275362319,
+  "f1_micro": 0.752093023255814,
+  "f1_macro": 0.6285082269089433
+ },
+ "best_macro": {
+  "threshold": 0.4,
+  "tp": 3348,
+  "fp": 1060,
+  "fn": 1206,
+  "precision": 0.7595281306715064,
+  "recall": 0.7351778656126482,
+  "f1_micro": 0.7471546529792457,
+  "f1_macro": 0.6295501517509734
+ }
+}

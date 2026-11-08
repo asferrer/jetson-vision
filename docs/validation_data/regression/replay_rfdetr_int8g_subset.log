@@ -1,0 +1,23 @@
+[11/06/2026-17:10:30] [TRT] [W] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+DIFF frame 0: detections differ beyond tolerance
+DIFF frame 1: detections differ beyond tolerance
+DIFF frame 2: detections differ beyond tolerance
+DIFF frame 3: detections differ beyond tolerance
+DIFF frame 4: detections differ beyond tolerance
+DIFF frame 5: detections differ beyond tolerance
+DIFF frame 6: detections differ beyond tolerance
+DIFF frame 7: detections differ beyond tolerance
+DIFF frame 8: detections differ beyond tolerance
+DIFF frame 9: detections differ beyond tolerance
+DIFF frame 10: detections differ beyond tolerance
+DIFF frame 11: detections differ beyond tolerance
+DIFF frame 12: detections differ beyond tolerance
+DIFF frame 13: detections differ beyond tolerance
+DIFF frame 14: detections differ beyond tolerance
+DIFF frame 15: detections differ beyond tolerance
+DIFF frame 16: detections differ beyond tolerance
+DIFF frame 17: detections differ beyond tolerance
+DIFF frame 18: detections differ beyond tolerance
+DIFF frame 19: detections differ beyond tolerance
+replay differs: 160 problems
+replay exit 1

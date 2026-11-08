@@ -1,0 +1,1 @@
+NVIDIA Nsight Systems version 2024.5.4.34-245434855735v0

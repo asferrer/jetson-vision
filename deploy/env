@@ -1,0 +1,11 @@
+# Installed as /etc/jetson-vision/env. Values are examples to adapt; none is a measurement.
+# Camera or file (v4l2:/dev/video0, gst:<pipeline>, folder:<dir>, video:<file>)
+JV_SOURCE=v4l2:/dev/video0
+# Manifest of the model (engines are built on the Jetson and never committed)
+JV_MODEL=/opt/jetson-vision/models/rfdetr_int8g.yaml
+JV_MODEL_DIR=/opt/jetson-vision/engines
+# Read by the CLI at start-up and written into the JSONL as the restart cause
+JV_LAST_STOP_FILE=/var/lib/jetson-vision/last_stop_cause
+# TensorRT and python paths of the Jetson image
+LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libstdc++.so.6
+PYTHONPATH=/usr/lib/python3.10/dist-packages

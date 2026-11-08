@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/e2e/rfdetr_int8g_1920x1080_30fps_fixed/run.jsonl",
+ "results": 1800,
+ "delivered_by_source": 1800,
+ "dropped": 0,
+ "dropped_pct": 0.0,
+ "span_s": 59.962910345,
+ "fps": 30.00187932255709,
+ "skipped_warmup": 30,
+ "mean_detections": 0.8672222222222222,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.3033595,
+   "p95_ms": 33.4086248,
+   "p99_ms": 33.48742171,
+   "max_ms": 34.953863
+  },
+  "preprocess": {
+   "p50_ms": 1.412493,
+   "p95_ms": 2.4843966,
+   "p99_ms": 2.6257280299999985,
+   "max_ms": 4.235927
+  },
+  "inference": {
+   "p50_ms": 26.167275,
+   "p95_ms": 26.2607574,
+   "p99_ms": 26.51709992,
+   "max_ms": 27.79189
+  },
+  "postprocess": {
+   "p50_ms": 1.0480295,
+   "p95_ms": 1.1108032,
+   "p99_ms": 1.3567722199999972,
+   "max_ms": 2.774872
+  },
+  "queue": {
+   "p50_ms": 0.17693550000000002,
+   "p95_ms": 0.21196215,
+   "p99_ms": 0.26245295999999985,
+   "max_ms": 1.757228
+  },
+  "service": {
+   "p50_ms": 28.739243000000002,
+   "p95_ms": 29.82337115,
+   "p99_ms": 30.799720909999987,
+   "max_ms": 34.884164
+  },
+  "total": {
+   "p50_ms": 28.921714,
+   "p95_ms": 30.01474555,
+   "p99_ms": 31.132564509999998,
+   "max_ms": 35.134735
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 36,
+  "proc_cores_mean": 0.7021666666666666,
+  "proc_cores_max": 0.909,
+  "rss_mb_mean": 1032.472222222222,
+  "rss_mb_max": 1035.8,
+  "rss_mb_first": 1034.9,
+  "rss_mb_last": 925.4,
+  "ram_used_mb_max": 2594.1,
+  "temp_max_c": 55.3,
+  "temp_mean_c": 54.39999999999999,
+  "gpu_mhz_mean": 612.0,
+  "gpu_mhz_min": 612.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 1498.0
+ },
+ "tegrastats": {
+  "samples": 38,
+  "ram_mb_mean": 2708.157894736842,
+  "ram_mb_max": 2749.0,
+  "cpu_pct_mean_per_core": 28.67543859649123,
+  "gr3d_pct_mean": 67.42105263157895,
+  "gr3d_mhz_mean": 611.1052631578947,
+  "vdd_in_w_mean": 10.302236842105263,
+  "vdd_in_w_max": 10.819,
+  "tj_max_c": 55.656,
+  "emc_pct_mean": 32.421052631578945,
+  "nvdec_active_samples": 35,
+  "vic_active_samples": 36
+ }
+}

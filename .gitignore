@@ -1,0 +1,13 @@
+*.engine
+*.onnx
+*.pth
+*.pt
+*.tflite
+*.gguf
+*.litertlm
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+out/
+data/

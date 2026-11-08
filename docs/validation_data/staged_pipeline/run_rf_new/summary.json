@@ -1,0 +1,89 @@
+{
+ "jsonl": "out/run_rf_new/run.jsonl",
+ "results": 8882,
+ "delivered_by_source": 8883,
+ "dropped": 1,
+ "dropped_pct": 0.011257458065968704,
+ "span_s": 296.095782653,
+ "fps": 29.993672724504165,
+ "skipped_warmup": 30,
+ "mean_detections": 0.8665841026795766,
+ "schema_version": 2,
+ "latency": {
+  "capture": {
+   "p50_ms": 33.290513,
+   "p95_ms": 34.2699505,
+   "p99_ms": 34.922972529999996,
+   "max_ms": 46.505429
+  },
+  "preprocess": {
+   "p50_ms": 3.4101115,
+   "p95_ms": 5.106709399999998,
+   "p99_ms": 5.798480269999999,
+   "max_ms": 10.113883
+  },
+  "inference": {
+   "p50_ms": 27.0343425,
+   "p95_ms": 28.84526055,
+   "p99_ms": 30.589758899999996,
+   "max_ms": 33.582479
+  },
+  "postprocess": {
+   "p50_ms": 1.8525800000000001,
+   "p95_ms": 3.542933149999998,
+   "p99_ms": 5.316506289999998,
+   "max_ms": 7.193162
+  },
+  "queue": {
+   "p50_ms": 0.7846305,
+   "p95_ms": 2.665204599999998,
+   "p99_ms": 3.4942411899999994,
+   "max_ms": 8.088868
+  },
+  "service": {
+   "p50_ms": 33.5021415,
+   "p95_ms": 35.90223675,
+   "p99_ms": 38.9892159,
+   "max_ms": 45.943624
+  },
+  "total": {
+   "p50_ms": 34.5489715,
+   "p95_ms": 38.26721765,
+   "p99_ms": 40.80911844,
+   "max_ms": 47.407028
+  }
+ },
+ "degradation_levels": [
+  0
+ ],
+ "monitor": {
+  "samples": 272,
+  "proc_cores_mean": 1.148169117647059,
+  "proc_cores_max": 1.189,
+  "rss_mb_mean": 1044.704411764706,
+  "rss_mb_max": 1045.3,
+  "rss_mb_first": 1044.2,
+  "rss_mb_last": 925.2,
+  "ram_used_mb_max": 1988.2,
+  "temp_max_c": 57.6,
+  "temp_mean_c": 57.01764705882353,
+  "gpu_mhz_mean": 610.875,
+  "gpu_mhz_min": 306.0,
+  "gpu_mhz_max": 612.0,
+  "cpu_mhz_mean": 905.6213235294117
+ },
+ "tegrastats": {
+  "samples": 270,
+  "ram_mb_mean": 2032.1888888888889,
+  "ram_mb_max": 2041.0,
+  "cpu_pct_mean_per_core": 20.488888888888887,
+  "gr3d_pct_mean": 75.07407407407408,
+  "gr3d_mhz_mean": 592.9037037037037,
+  "vdd_in_w_mean": 9.512148148148148,
+  "vdd_in_w_max": 9.714,
+  "tj_max_c": 57.625,
+  "emc_pct_mean": 33.84074074074074,
+  "nvdec_active_samples": 268,
+  "vic_active_samples": 268
+ }
+}

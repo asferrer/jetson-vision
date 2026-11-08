@@ -1,0 +1,10 @@
+nsys exit 0 at 19:07:21
+total 36692
+drwxrwxr-x  2 user user     4096 nov  6 19:07 .
+drwxrwxr-x 11 user user     4096 nov  6 19:05 ..
+-rw-rw-r--  1 user user       24 nov  6 19:07 exit.txt
+-rw-rw-r--  1 user user     4127 nov  6 19:07 jv.log
+-rw-rw-rw-  1 user user  1478712 nov  6 19:07 run.jsonl
+-rw-rw-r--  1 user user        9 nov  6 19:05 start.txt
+-rw-rw-r--  1 user user 36055342 nov  6 19:07 trace.nsys-rep
+-rw-rw-r--  1 user user       57 nov  6 19:05 version.txt

@@ -1,0 +1,24 @@
+[11/06/2026-17:23:35] [TRT] [W] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+2026-11-06 17:23:35,746 INFO jetson_vision.backends.tensorrt engine rfdetr_exp07_qG_int8.engine loaded: TensorRT device memory 22.2 MB, torch reserved 42.0 MB
+DIFF frame 5: detections differ beyond tolerance
+DIFF frame 7: detections differ beyond tolerance
+DIFF frame 8: detections differ beyond tolerance
+DIFF frame 10: detections differ beyond tolerance
+DIFF frame 12: detections differ beyond tolerance
+DIFF frame 14: detections differ beyond tolerance
+DIFF frame 15: detections differ beyond tolerance
+DIFF frame 18: detections differ beyond tolerance
+DIFF frame 20: detections differ beyond tolerance
+DIFF frame 23: detections differ beyond tolerance
+DIFF frame 24: detections differ beyond tolerance
+DIFF frame 28: detections differ beyond tolerance
+DIFF frame 30: detections differ beyond tolerance
+DIFF frame 31: detections differ beyond tolerance
+DIFF frame 34: detections differ beyond tolerance
+DIFF frame 36: detections differ beyond tolerance
+DIFF frame 37: detections differ beyond tolerance
+DIFF frame 38: detections differ beyond tolerance
+DIFF frame 39: detections differ beyond tolerance
+DIFF frame 40: detections differ beyond tolerance
+replay differs: 63 problems
+replay exit 1

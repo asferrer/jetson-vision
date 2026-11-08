@@ -1,0 +1,115 @@
+Generating SQLite file out/nsys/trace.sqlite from out/nsys/trace.nsys-rep
+Processing [out/nsys/trace.sqlite] with [/opt/nvidia/nsight-systems/2024.5.4/host-linux-armv8/reports/cuda_gpu_kern_sum.py]... 
+Time (%),Total Time (ns),Instances,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+17.9,7537156064,19151,393564.6,391840.0,386848,779136,19501.2,sm80_xmma_gemm_i8i8_i8i32_f32_tn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x32_fused
+13.7,5771232416,22631,255014.5,283360.0,86816,562240,71408.6,sm80_xmma_gemm_f16f16_f16f16_f16_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_fused
+11.6,4875676768,38302,127295.6,155584.0,65504,368896,59080.9,sm80_xmma_gemm_i8f32_i8i32_f32_tn_n_tilesize128x128x64_stage3_warpsize2x2x1_tensor16x8x32_fused
+3.3,1373084928,1741,788676.0,785344.0,782240,1568864,40167.2,_gemm_mha_v2_0xda70f3e547761318d48561e4cc3c14be
+3.3,1373078304,1741,788672.2,785344.0,782848,1571616,40214.6,_gemm_mha_v2_0x0ec63a5fd5ed02c20108e114aa8fd281
+3.3,1372953056,1741,788600.3,785248.0,782848,1569280,40142.6,_gemm_mha_v2_0x624f7adcc6f5505b7ff8e64f00fb2cc4
+2.0,849084992,10441,81322.2,79776.0,78624,169152,4678.6,sm80_xmma_fprop_implicit_gemm_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize256x128x32_stage3_warpsize4x2x1_g1_tensor16x8x16_t1r3s3_execute_kernel_trt
+1.7,720146688,1741,413639.7,411936.0,403456,789504,19108.2,sm80_xmma_fprop_implicit_gemm_indexed_wo_smem_f16f16_f16f16_f16_nhwckrsc_nhwc_tilesize128x32x64_stage1_warpsize4x1x1_g1_tensor16x8x16_aligna8_alignc8_execute_kernel_trt
+1.6,680493984,5220,130362.8,131392.0,122976,254720,6884.0,__myl_ResResSliSliMaxSubExpSliSliAddDivMulTraResResMulMulMulAddMulAddResTraResCasRevTraCasAddMulEtc_0x739c1bfacfd42133e3342ec9f28938f4
+1.6,670314912,5223,128339.1,127744.0,125248,252704,6442.9,__myl_ResAddCasMeaSubMulMea_0xb26da2adc8c679bc7dcd9dc762cc7d04
+1.6,664810016,13928,47731.9,46976.0,45056,87552,3052.6,__myl_ResTraRes_0x6d7f4305e201813621077edf27b9d45e
+1.6,662984160,13928,47600.8,46816.0,44800,88000,3021.5,__myl_ResTraRes_0x926c7c8c2e1b2839e56b816163d001ab
+1.6,662749312,13928,47584.0,46816.0,44672,87456,2973.1,__myl_ResTraRes_0x85dc927b39cc94bbcc17ce819dc16b98
+1.6,661449856,6960,95035.9,83536.0,50784,290336,36651.0,sm80_xmma_gemm_f16f16_f16f16_f16_nn_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_execute_kernel_trt
+1.3,564790592,19140,29508.4,24928.0,18336,141440,15267.3,sm80_xmma_gemm_f16f16_f16f32_f32_nn_n_tilesize96x128x32_stage4_warpsize2x2x1_tensor16x8x16_execute_kernel_trt
+1.2,501678336,6964,72038.8,71296.0,68224,127584,3687.8,__myl_AddSqrDivMulCasMulAddSliResTraResTraMov_0x88099626d7dc02865408deaa88e0a313
+1.1,468021536,5220,89659.3,88672.0,86688,180928,4371.9,_gemm_mha_v2_0x35a567e30b609b61f4fed1958d6a2fdb
+1.1,447357248,1741,256954.2,254496.0,245504,469504,13082.4,"void at::native::elementwise_kernel<(int)128, (int)2, void at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 3)]::operator ()() const::[lambda() (instance 7)]::operator ()() const::[lambda(float) (instance 1)]>(at::TensorIteratorBase &, const T1 &)::[lambda(int) (instance 1)]>(int, T3)"
+1.0,437667200,5220,83844.3,83520.0,80000,156416,3546.8,sm80_xmma_gemm_f16f16_f16f32_f32_nn_n_tilesize160x128x32_stage3_warpsize2x2x1_tensor16x8x16_execute_kernel_trt
+0.8,357878624,1741,205559.2,204256.0,201760,401664,9436.6,trt_ampere_h16816gemm_256x128_ldg8_stages_32x3_nn_v1
+0.8,324489280,13928,23297.6,23264.0,22336,43232,1051.1,__myl_ResTra_0x740693aa87aa8bede5318bcd1fe81b36
+0.7,306061888,1741,175796.6,171808.0,166624,317312,10867.7,_gemm_mha_v2_0x2c275670e7b40ae8f20edde61dd660f0
+0.7,301742592,1741,173315.7,171552.0,166560,314080,8400.0,_gemm_mha_v2_0x646e18fbf10e68b087d3d044e4667df0
+0.7,300574080,1740,172743.7,172000.0,169504,326016,7264.8,__myl_GtrNotNotTraSel_0x0b5da9baec60f343063f7c4ce3c38fae
+0.7,298914400,1741,171691.2,170880.0,166880,312448,7387.9,_gemm_mha_v2_0xae49b40eb78cd49c693696a3f58e7217
+0.7,298514560,1741,171461.6,169760.0,166336,318816,8422.6,_gemm_mha_v2_0x55ad256c90d288624be60592fc6fd96e
+0.7,298471840,1741,171437.0,170624.0,166816,286816,6070.0,"void at::native::elementwise_kernel<(int)128, (int)2, void at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::DivFunctor<float>>>(at::TensorIteratorBase &, const T1 &)::[lambda(int) (instance 1)]>(int, T3)"
+0.7,298330976,1741,171356.1,170464.0,167040,316384,7457.1,_gemm_mha_v2_0x5b93b0be8e14640ce47c4bebca1a6747
+0.7,297817248,1741,171061.0,169920.0,165984,311328,7508.9,_gemm_mha_v2_0xbd91dcd409474d2f64a06613a67c5da2
+0.7,297814784,1741,171059.6,169632.0,166400,315680,8115.4,_gemm_mha_v2_0xcedd485afc238b18bdee2bb5f4759add
+0.7,297775200,1741,171036.9,170112.0,165504,315648,7466.4,_gemm_mha_v2_0x38fcded83180c7e02422c2d3243c3e25
+0.7,286593664,1741,164614.4,163744.0,159840,273312,5794.2,"void at::native::elementwise_kernel<(int)128, (int)2, void at::native::gpu_kernel_impl_nocast<at::native::CUDAFunctor_add<float>>(at::TensorIteratorBase &, const T1 &)::[lambda(int) (instance 1)]>(int, T3)"
+0.7,283228064,1741,162681.3,162080.0,159648,268448,5454.7,"void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase &)::[lambda() (instance 3)]::operator ()() const::[lambda() (instance 7)]::operator ()() const::[lambda(float) (instance 1)], at::detail::Array<char *, (int)2>, TrivialOffsetCalculator<(int)1, unsigned int>, TrivialOffsetCalculator<(int)1, unsigned int>, at::native::memory::LoadWithCast<(int)1>, at::native::memory::StoreWithCast<(int)1>>(int, T1, T2, T3, T4, T5, T6)"
+0.6,246529440,5223,47200.7,46624.0,44480,88192,2733.0,__myl_ResTraRes_0x2ac7ce044ad150c8a7dbb4cebe779661
+0.6,246189984,5223,47135.7,46560.0,44672,87936,2725.0,__myl_ResTraRes_0x8ad1f021f7dc11748d1e341d7465edff
+0.6,244583456,5223,46828.2,46240.0,44448,87744,2716.2,__myl_ResTraRes_0x542bd9bd69414a9f04c5073669556e39
+0.5,229100416,10440,21944.5,21728.0,19424,43328,1373.4,__myl_TraCasMeaSubMulMea_0xde5273e52ce52a777a1b937e875f1a26
+0.5,228010976,5220,43680.3,40512.0,37600,97664,5731.7,sm80_xmma_gemm_f16f16_f16f32_f32_tn_n_tilesize160x128x32_stage4_warpsize2x2x1_tensor16x8x16_execute_kernel_trt
+0.5,225040608,1741,129259.4,127968.0,123456,237280,6845.7,"void at::native::vectorized_elementwise_kernel<(int)4, at::native::AUnaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float>>, at::detail::Array<char *, (int)2>>(int, T2, T3)"
+0.5,223594944,1741,128429.0,127904.0,120352,229056,5529.2,"void CUTENSOR_NAMESPACE::permutationKernelPLC3<CUTENSOR_NAMESPACE::VectorWrite2DTensorView<(unsigned char)0, (unsigned char)1, (bool)0, (unsigned int)4, float, __half, CUTENSOR_NAMESPACE::GeneralUnarySmall<float>>, CUTENSOR_NAMESPACE::VectorRead2DTensorView<(unsigned char)1, (unsigned char)0, (bool)0, (unsigned int)4, float, float, CUTENSOR_NAMESPACE::GeneralUnarySmall<float>>, CUTENSOR_NAMESPACE::ThreadLevelElementwise<CUTENSOR_NAMESPACE::ElementwiseConfig2DSmallMode0<CUTENSOR_NAMESPACE::GeneralUnarySmall<float>, CUTENSOR_NAMESPACE::GeneralBinary<float>, (int)2, (int)4, (int)256, (int)128, (signed char)4, (bool)0, (bool)0, (bool)0, (bool)0, (bool)1>, float>, CUTENSOR_NAMESPACE::ElementwiseRuntimePLC3<float, float, __half, float>::Params>(T4)"
+0.5,212460608,8700,24420.8,24288.0,23552,48000,1132.2,__myl_AddSqrDivMulCasMulAddTraNegExpAddDivMul_0x10a0e9da2ad82a510532d44d5b7d5eb6
+0.5,201410816,5220,38584.4,37728.0,29504,76352,6821.5,__myl_Tra_0xd5a264f442d74678e8a3bf0864b2d453
+0.4,185554976,5220,35546.9,35456.0,33984,67840,1537.4,sm80_xmma_gemm_f16f16_f16f16_f16_nt_n_tilesize128x128x32_stage4_warpsize2x2x1_tensor16x8x16_aligna4_alignc4_execute_kernel_trt
+0.4,182509728,1740,104890.6,104352.0,102720,207264,4854.0,trt_ampere_h16816gemm_128x128_ldg8_stages_32x5_nn_v1
+0.4,173650176,3481,49885.1,50752.0,41888,109408,6151.5,__myl_TraCasMeaSubMulMea_0x6d6e3b737898f380aea300a69d0a23a0
+0.4,165840512,1741,95255.9,94752.0,93248,176736,4234.8,__myl_ResTraConAddSliRepSliResTraResConCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x882c27f03d46b1bd61bdfa42ae9b5d52
+0.4,163671424,1740,94064.0,93440.0,91168,173056,3882.3,__myl_AddSqrDivMulCasMulAddTraRes_0x4179cddb4d9706c91551d3f9d5978205
+0.4,159358240,1741,91532.6,90816.0,88864,178432,4406.1,__myl_ResAddCasMeaSubMulMea_0xcfd8af096270170f7adbbf2930324d3c
+0.3,145508800,1741,83577.7,81792.0,79648,157248,4993.2,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x12114f8b6730d85b722e347edb5ada23
+0.3,145217184,1741,83410.2,81440.0,77664,154016,5573.2,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xf29a6b10d45c475094f5401a26e6bb26
+0.3,144991424,1741,83280.5,81984.0,79808,155712,4455.0,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x712d1e79a286e620a577685bd2040c6b
+0.3,144720800,1741,83125.1,82624.0,79968,154624,3796.1,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x7565fe816947338774a06e693d2cd4fe
+0.3,144083232,1741,82758.9,82304.0,79520,154560,3860.5,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xd4c899b57b734a7e27d0bece516cde5c
+0.3,143936576,1741,82674.7,81888.0,78272,153056,4283.2,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x0ff9bf4c554b95a6fe2bb661f6abe445
+0.3,143551584,1741,82453.5,82208.0,78432,154304,3949.7,__myl_ResMulAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x240016b017a26e6aa99f12c6bda24146
+0.3,143439904,1741,82389.4,81888.0,79840,155584,3872.3,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xfbe5c2f28ccbba82164f5b226417d859
+0.3,143076320,1741,82180.5,81632.0,79616,155648,3888.5,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x9214d5ee4d2c89d903c2633a45fdb686
+0.3,142998272,1741,82135.7,81312.0,79776,156096,4182.2,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x52f4faaae8478e335c6f4484d3a074d0
+0.3,142983200,1741,82127.1,81760.0,78176,157376,4110.5,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x9fd9bca83d36fc1dc9d2fb6869334e83
+0.3,142931424,1741,82097.3,81600.0,79520,154752,3862.5,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x3c0f0c79a20c83882797d5bd93d1260b
+0.3,142733248,1741,81983.5,81248.0,79296,159680,4201.6,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x65fc20cdec8f1df760e9a7fce9faebda
+0.3,142511168,1741,81855.9,80608.0,78176,153728,4667.1,__myl_ResMulAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x61ac3d400b2101b6bfd9ce0640496ebe
+0.3,142148192,1741,81647.4,81376.0,78208,154720,4055.1,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xf97522ee8032ddfcd9ec8023912b0b0c
+0.3,142121152,1741,81631.9,81024.0,77728,155968,4373.4,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x94229219b3590109507c0227a0e74185
+0.3,141667616,1741,81371.4,80608.0,77920,154016,4496.1,__myl_ResAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xaf48f1583d773c53bd91bf75bee8d8fb
+0.3,141128416,1740,81108.3,79168.0,75616,148416,5696.7,__myl_SliAddSqrDivMulCasMulAddTraNegExpAddDivMulCon_0xafee3bd92e20801e4d070d916561c598
+0.3,140816896,1741,80882.8,80288.0,78304,152576,3973.7,__myl_ResMulAddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xfad5a714157a7577d7d3d6d5b1a5fa19
+0.3,118750208,5223,22736.0,22656.0,21568,40864,970.2,__myl_ResTra_0x986e605b3cbd2c50a8fe8db35ebf6ea9
+0.3,118227104,1740,67946.6,67520.0,64864,136352,3320.7,sm80_xmma_gemm_f16f16_f16f16_f16_tn_n_tilesize256x64x32_stage3_warpsize4x1x1_tensor16x8x16_aligna4_alignc4_execute_kernel_trt
+0.3,118030816,1741,67794.8,67552.0,65728,128096,2888.8,__myl_AddSqrDivMulCasMulAddTraNegExpAddDivMulSli_0x7f346a423e130ee82894e07d79c1fdec
+0.3,109920096,1740,63172.5,62080.0,57248,123104,4753.5,sm80_xmma_gemm_f16f16_f16f16_f16_tn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna2_alignc2_execute_kernel_trt
+0.2,103671680,1741,59547.2,59200.0,57888,107488,2567.6,__myl_ResCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0xbf356e39f84eecbddf13e20ce3797edb
+0.2,103495424,1741,59446.0,59200.0,57984,107680,2488.2,__myl_ResCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x4093bdbd9c251fcc6fe2fb49fcabf128
+0.2,103403680,1741,59393.3,59136.0,57920,107968,2476.8,__myl_ResCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMulMinMaxRouCas_0x3d80ed0c07dc6cf1fc48f807d0479890
+0.2,91796992,1740,52756.9,52096.0,50016,95168,2623.5,__myl_AddSqrDivMulCasMulAddTraNegExpAddDivMulTra_0x593bfc12d81f9d7f72815a2f5af74664
+0.2,81925120,5220,15694.5,15680.0,14688,29504,765.6,trt_ampere_h16816gemm_128x64_ldg8_relu_stages_32x6_nn_v1
+0.2,78229664,1740,44959.6,44736.0,42208,84800,2243.8,__myl_CasMeaSubMulMea_0x9af2717e96d8763526fa6e1ad28440b9
+0.2,75248672,1740,43246.4,43648.0,35680,94176,4376.0,__myl_CasMeaSubMulMeaAddSqrDivMulCasMulAdd_0x487da76de046e87872d256066861ab15
+0.2,66222048,6960,9514.7,8896.0,7776,19648,1119.9,__myl_Res_0x9dfd66d22d2abbf5eb9144078509b7b4
+0.1,60955264,3480,17515.9,18688.0,14272,34240,2050.9,__myl_Add_0x165434e25f3a68aef3c26f5d571823aa
+0.1,59118656,1740,33976.2,33760.0,31488,65984,1670.3,sm80_xmma_gemm_f16f16_f16f16_f16_tn_n_tilesize64x32x64_stage5_warpsize2x2x1_tensor16x8x16_aligna2_alignc2_execute_kernel_trt
+0.1,56683040,1740,32576.5,32160.0,26688,84480,5438.1,__myl_Top_0x30034dd3bcc9c2f00a1ea5824924607b
+0.1,54206240,5220,10384.3,9472.0,8704,22976,1534.3,__myl_AddCasMeaSubMulMeaAddSqrDivMulCasMulAdd_0x33369a816d1bfb350e3dc054b63fa9a6
+0.1,51304128,6960,7371.3,7264.0,6240,15200,680.1,__myl_SinRes_0x80d85bdb09ff79cdb1aeea3c4a6c6706
+0.1,46976160,3480,13498.9,13408.0,12672,27040,711.1,__myl_AddCasMeaSubMulMeaAddSqrDivMulCasMulAddResAdd_0xb3ceaf0e440c74a21fb003cf3cb8fd9a
+0.1,43843296,1740,25197.3,24928.0,24064,54624,2559.6,sm80_xmma_gemm_f16f16_f16f16_f16_tn_n_tilesize128x64x64_stage3_warpsize2x2x1_tensor16x8x16_aligna4_alignc4_execute_kernel_trt
+0.1,43599808,5220,8352.5,8352.0,6944,16128,434.1,__myl_TraResTraRes_0x89d326041f51252061872f254bd9793f
+0.1,32590720,1740,18730.3,18592.0,17536,36032,929.9,__myl_SelSliSliCasResCasRepExpMulMulAddConGatSliSliMulMulAddConSliSliResSliSliSliResSliResSliResEtc_0x8d9a13561eafddfa2c72bf1c6e962476
+0.1,27284512,1740,15680.8,15648.0,14848,27904,657.8,__myl_AddCasMeaSubMulMeaAddSqrDivMulCasMulAddCasMeaSubMulMeaAddSqrDivMulCasMulAdd_0xb72b24b49c10a41ee0636b43cfaeab76
+0.1,24261792,1740,13943.6,13856.0,12928,26432,716.9,__myl_AddCasMeaSubMulMeaAddSqrDivMulCasMulAddResAdd_0xb3eb613261b072c1b2024ceea3779587
+0.1,23782592,1740,13668.2,13600.0,12704,23104,569.4,__myl_Add_0x2e5110c3cd2a53828e362d0df348316e
+0.1,22494912,1740,12928.1,11552.0,9952,28320,2060.3,__myl_IotCasCasAddResRepResResRepResConResAddMulRepConResLtGtrAndNotCasSum_0x0e2899be6e5b95ae194357c1d48d892c
+0.0,20712480,1740,11903.7,11776.0,8832,24096,1442.1,__myl_Max_0x5395d31da7c47a41fed211e159fe6f3a
+0.0,13557024,1740,7791.4,7744.0,6016,18656,702.4,__myl_Cas_0xfdc6dc461fcc1c9e6301daeb148abd5e
+0.0,11521760,1740,6621.7,6560.0,6336,11680,278.5,__myl_ExpMulMulAddConCas_0xd49c04d79233effdf6fbd69e57f34291
+
+Processing [out/nsys/trace.sqlite] with [/opt/nvidia/nsight-systems/2024.5.4/host-linux-armv8/reports/cuda_gpu_mem_time_sum.py]... 
+Time (%),Total Time (ns),Count,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Operation
+90.9,106140224,1741,60965.1,60512.0,59232,116608,2975.8,[CUDA memcpy Host-to-Device]
+9.1,10653056,3480,3061.2,3200.0,2112,5408,298.7,[CUDA memcpy Device-to-Host]
+
+Processing [out/nsys/trace.sqlite] with [/opt/nvidia/nsight-systems/2024.5.4/host-linux-armv8/reports/cuda_api_sum.py]... 
+Time (%),Total Time (ns),Num Calls,Avg (ns),Med (ns),Min (ns),Max (ns),StdDev (ns),Name
+78.9,30521406784,6961,4384629.6,43872.0,5344,41381216,7588157.3,cudaStreamSynchronize
+10.1,3885740000,245481,15829.1,14304.0,5888,595520,14606.3,cuLaunchKernel
+6.5,2501356160,141021,17737.5,16480.0,7680,2444128,16848.5,cuLaunchKernelEx
+2.1,804069632,19151,41985.8,40608.0,9184,468224,27998.3,cudaLaunchKernel
+1.9,720181536,5221,137939.4,110112.0,39488,1044832,75348.1,cudaMemcpyAsync
+0.3,99236256,31338,3166.6,2432.0,992,545568,8151.5,cuEventRecord
+0.2,80318528,31338,2563.0,1952.0,736,398656,6944.9,cuStreamWaitEvent
+0.1,50779424,15669,3240.8,2752.0,1152,337824,6111.3,cudaStreamIsCapturing_v10000
+

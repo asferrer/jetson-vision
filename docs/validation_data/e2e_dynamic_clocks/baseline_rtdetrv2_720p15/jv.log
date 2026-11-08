@@ -1,0 +1,6 @@
+[11/06/2026-18:33:15] [TRT] [W] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+2026-11-06 18:33:16,261 INFO jetson_vision.backends.tensorrt engine rtdetrv2_exp08s3_int8mix_stem.engine loaded: TensorRT device memory 96.1 MB, torch reserved 42.0 MB
+NvMMLiteOpen : Block : BlockType = 261 
+NvMMLiteBlockCreate : Block : BlockType = 261 
+Opening in BLOCKING MODE 
+jv exit 0

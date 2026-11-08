@@ -1,0 +1,1 @@
+jv: engine refused: engine rfdetr_exp07_qG_int8.engine does not match manifest 'rfdetr_exp07_qG_int8': SHA-256 is f7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657, the manifest expects a7e4236133d2bb243b39a133d32417924dcd90b917dbf1b06b87b8b39ccc4657. Use the engine that the manifest describes.

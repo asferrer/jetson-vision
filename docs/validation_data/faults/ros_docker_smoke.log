@@ -1,0 +1,118 @@
+Starting >>> jetson_vision_ros2
+Finished <<< jetson_vision_ros2 [0.40s]
+
+Summary: 2 packages finished [2.63s]
+--- lifecycle
+unconfigured [1]
+Transitioning successful
+Transitioning successful
+--- topics
+/diagnostics
+/image_raw
+/jetson_vision/detections
+/jetson_vision/frame_meta
+/jetson_vision/transition_event
+/parameter_events
+/rosout
+--- sub QoS
+Node name: fake_cam
+Node namespace: /
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+Node name: jetson_vision
+Node namespace: /
+  Reliability: BEST_EFFORT
+  History (Depth): UNKNOWN
+--- detections header
+stamp:
+  sec: 1234
+  nanosec: 567
+frame_id: cam_test
+---
+--- first detection
+[vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='0', score=0.9527656858698929), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=40.69766616821289, y=22.197278022766113), theta=0.0), size_x=19.19728660583496, size_y=8.261073589324951), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='0', score=0.8379832500354603), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=32.1686897277832, y=35.06325817108154), theta=0.0), size_x=12.288005828857422, size_y=5.691452622413635), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='1', score=0.8147828898583924), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=13.612643241882324, y=9.80765962600708), theta=0.0), size_x=15.414738655090332, size_y=13.40753173828125), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='6', score=0.8119594658716401), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=34.053672790527344, y=12.483859062194824), theta=0.0), size_x=15.806316375732422, size_y=5.798599004745483), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='3', score=0.7635795640457562), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=18.428586959838867, y=33.28530693054199), theta=0.0), size_x=9.616800308227539, size_y=3.1360137462615967), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='1', score=0.7553711026826234), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=32.85295867919922, y=23.66176128387451), theta=0.0), size_x=9.943376541137695, size_y=7.685807704925537), id=''), vision_msgs.msg.Detection2D(header=std_msgs.msg.Header(stamp=builtin_interfaces.msg.Time(sec=1234, nanosec=567), frame_id='cam_test'), results=[vision_msgs.msg.ObjectHypothesisWithPose(hypothesis=vision_msgs.msg.ObjectHypothesis(class_id='3', score=0.5001535257567367), pose=geometry_msgs.msg.PoseWithCovariance(pose=geometry_msgs.msg.Pose(position=geometry_msgs.msg.Point(x=0.0, y=0.0, z=0.0), orientation=geometry_msgs.msg.Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)), covariance=array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,
+       0., 0.])))], bbox=vision_msgs.msg.BoundingBox2D(center=vision_msgs.msg.Pose2D(position=vision_msgs.msg.Point2D(x=29.760677337646484, y=37.19900321960449), theta=0.0), size_x=8.502751350402832, size_y=12.623278141021729), id='')]
+---
+--- frame_meta
+header:
+  stamp:
+    sec: 1234
+    nanosec: 567
+  frame_id: cam_test
+schema_version: 2
+model_id: rfdetr_exp07_qG_int8
+session_id: 6f6ef8729ca54ee2a149328a032c3d49
+frame_seq: 25
+score_threshold: 0.44999998807907104
+degradation_level: 0
+dropped_before: 0
+capture_ns: 0
+preprocess_ns: 397586
+inference_ns: 1360315
+postprocess_ns: 273757
+tracking_ns: 0
+total_ns: 2085297
+queue_ns: 0
+---
+--- diagnostics
+header:
+  stamp:
+    sec: 1793988585
+    nanosec: 476332172
+  frame_id: ''
+status:
+- level: "\0"
+  name: jetson_vision
+  message: ok
+  hardware_id: 26c8f1853f0f
+  values:
+  - key: degradation_level
+    value: '0'
+  - key: model_id
+    value: rfdetr_exp07_qG_int8
+  - key: temperature_c
+    value: unknown
+  - key: latency_p95_ms
+    value: '1.7'
+  - key: fps
+    value: '5.0'
+---
+--- hz
+average rate: 4.998
+	min: 0.199s max: 0.202s std dev: 0.00102s window: 7
+average rate: 4.996
+Traceback (most recent call last):
+  File "/opt/ros/humble/bin/ros2", line 33, in <module>
+    sys.exit(load_entry_point('ros2cli==0.18.20', 'console_scripts', 'ros2')())
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2cli/cli.py", line 91, in main
+    rc = extension.main(parser=parser, args=args)
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2topic/command/topic.py", line 41, in main
+    return extension.main(args=args)
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2topic/verb/hz.py", line 96, in main
+    return main(args)
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2topic/verb/hz.py", line 111, in main
+    return _rostopic_hz(
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2topic/verb/hz.py", line 283, in _rostopic_hz
+    rt.print_hz(topic)
+  File "/opt/ros/humble/lib/python3.10/site-packages/ros2topic/verb/hz.py", line 252, in print_hz
+    print('average rate: %.3f\n\tmin: %.3fs max: %.3fs std dev: %.5fs window: %s'
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+--- deactivate/cleanup
+Transitioning successful
+Transitioning successful
+--- node log

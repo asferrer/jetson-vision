@@ -31,6 +31,13 @@ With `jetson_clocks` (at 15 W) the RF-DETR latency at 15 fps drops from 41 to 29
 also measured at 25 W (RF-DETR capacity 48 fps, RT-DETRv2 35 fps, both hold 30 fps input) and MAXN_SUPER (51 and 37 fps) with
 dynamic clocks; 7 W could not be measured because `nvpmodel` requires a reboot for it.
 
+![Validation AP against GPU latency and energy per image of the TensorRT engines on the Jetson Orin Nano Super](docs/images/ap-latency-energy.png)
+
+*Figure from the accompanying article. (a) Validation AP against GPU latency at 15 W of the TensorRT engines (gray: FP32;
+teal: FP16; light teal: mixed; orange: INT8). (b) Energy per image of the main configuration of each detector in each power
+mode. The figure also shows DiffusionDet, which this repository does not deploy. Its RF-DETR AP (43.31) uses a PIL resize, as
+in the training-side evaluation, so it differs from the 43.445 above (see "About the AP figures").*
+
 ### About the AP figures
 
 The **43.445 AP** of RF-DETR is measured **with this pipeline's preprocessing** (cv2 `INTER_LINEAR` resize on uint8, then
@@ -56,9 +63,33 @@ difference is 0.009.
 
 ## Models and engines
 
+From a trained detector to a running engine. This workflow comes from the accompanying article; this repository covers the
+last two boxes, from the engine file on:
+
+![Deployment workflow: PyTorch, ONNX, TensorRT engine, real-time inference](docs/images/deployment-pipeline.png)
+
+*Figure from the accompanying article.*
+
 No weights, ONNX files or TensorRT engines are distributed here (`.gitignore` excludes them). A manifest in `models/`
 describes one engine: file name, SHA-256, TensorRT version, GPU architecture, input size and normalisation, decoder,
 classes, threshold. `jv` refuses to load an engine whose hash, TensorRT version or GPU does not match its manifest.
+
+How `jv` checks an engine before it runs a single frame (`jetson_vision/manifest.py`, `jetson_vision/backends/tensorrt.py`):
+
+```mermaid
+flowchart TD
+    M["Manifest YAML<br/>engine file, SHA-256, TensorRT version, GPU,<br/>input, decoder, classes, threshold"] --> P["Engine path<br/>--model-dir, then JV_MODEL_DIR,<br/>then the manifest folder"]
+    P --> H{"SHA-256 of the file<br/>equals the manifest?"}
+    H -- no --> X["EngineMismatchError<br/>jv exits with code 1"]
+    H -- yes --> R{"TensorRT version, GPU architecture,<br/>name and SM count match?"}
+    R -- no --> X
+    R -- yes --> D{"TensorRT deserializes the engine<br/>and its tensors match the manifest?"}
+    D -- no --> X
+    D -- yes --> W["Allocate buffers, 3 warm-up runs"]
+    W --> OK["Engine ready<br/>the manifest also fixes the preprocessing and the decoder"]
+```
+
+An engine is never rebuilt on the robot: if any check fails, `jv` stops.
 
 To use the module you need to bring your own engine:
 
@@ -137,6 +168,28 @@ about 3 ms) and decoding (about 2 ms) overlap with the engine instead of running
   `max_consecutive_errors` failures in a row in one stage stop the pipeline. `stop()` ends every thread and closes source
   and backend; sinks belong to the caller.
 
+```mermaid
+flowchart LR
+    SRC["Source<br/>folder, video, v4l2, gst, RTP"] --> CAP
+    subgraph T["Five threads, one per stage, FIFO order"]
+        direction LR
+        CAP["capture<br/>read, reconnect with backoff"]
+        PRE["preprocess<br/>cv2 resize on uint8"]
+        INF["inference<br/>GPU normalisation + TensorRT engine"]
+        POST["postprocess<br/>decoder, optional tracker"]
+        PUB["publish<br/>write to every sink"]
+        CAP -- "live: mailbox, newest wins<br/>replay: blocking queue (4)" --> PRE
+        PRE -- "live: mailbox, newest wins<br/>replay: blocking queue (2)" --> INF
+        INF -- "blocking queue (2)" --> POST
+        POST -- "blocking queue (16)" --> PUB
+    end
+    PUB --> SNK["Sinks<br/>JSON Lines, compact summary, stdout"]
+```
+
+The queue sizes are the defaults of `PipelineConfig`. A frame that overwrote an older one in a mailbox is counted in
+`Pipeline.overwritten`; downstream of the engine nothing is dropped, so a slow sink slows the pipeline instead of losing
+results.
+
 Measured on the Jetson against the serial version (same engines, clips, power mode and flags; details and caveats in
 `docs/VALIDATION.md`, section 13):
 
@@ -179,6 +232,39 @@ Levels: 0 normal, 1 half FPS, 2 alerts only (one frame per second), 3 stop. `nvp
 - **Watchdog heartbeat.** `SystemdWatchdog` sends `WATCHDOG=1` only if there is a recent result or the pipeline declared
   "no source" (a dropped camera being reconnected). A hung backend stops results, and with them the heartbeat.
 
+```mermaid
+flowchart LR
+    Z["Thermal zones<br/>hottest zone, Celsius"] --> HM
+    PUB["Published results"] --> OPS["OpsSink"]
+    OPS -- "inference latency" --> HM["HealthMonitor<br/>temperature level, drift level<br/>level = the higher of the two"]
+    OPS -- "result seen" --> WD["SystemdWatchdog<br/>WATCHDOG=1 only if results are recent<br/>or the source is reconnecting"]
+    SUP["Supervisor<br/>one tick per second"] -- "evaluate" --> HM
+    HM -- "level" --> SUP
+    SUP -- "set_degradation, set_throttle" --> PIPE["Pipeline"]
+    SUP -- "no source" --> WD
+    WD --> SD["systemd<br/>restarts the service if the beat stops"]
+```
+
+```mermaid
+stateDiagram-v2
+    direction LR
+    L0: 0 normal
+    L1: 1 half FPS
+    L2: 2 alerts only
+    L3: 3 stop
+    L0 --> L1: signal above the level 1 threshold
+    L1 --> L2: signal above the level 2 threshold
+    L2 --> L3: signal above the level 3 threshold
+    L3 --> L2: one step down
+    L2 --> L1: one step down
+    L1 --> L0: one step down
+    L3 --> [*]: jv exits with code 3, no restart
+```
+
+A level rises as soon as a signal crosses its threshold, and falls one step at a time after the minimum hold time
+(`HealthConfig.hold_s`, 30 s by default) once the signal is back inside its hysteresis band. The temperature thresholds
+(80, 85 and 90 C) and the drift thresholds (25 % and 75 % above the baseline) are provisional defaults, as explained above.
+
 Limitation: when FPS is halved a baseline for that cadence is needed (for example `30:..,15:..`); without it level 1 is
 released only by temperature, not by latency.
 
@@ -200,6 +286,26 @@ The core never imports `rclpy` (a test checks it).
   `/diagnostics`. `Detection2D.id` carries the `track_id` or is empty.
 - Parameters: `manifest`, `backend` (`tensorrt` or `fake`), `image_topic`, `input_fps`, `alert_period_s`, `baseline_fps`,
   `baseline_ms`.
+
+```mermaid
+flowchart LR
+    CAM["Camera driver<br/>sensor_msgs/Image"] -- "image_raw, sensor QoS" --> N
+    subgraph N["jetson_vision lifecycle node (jetson_vision_ros2)"]
+        direction TB
+        MAP["mapping.py<br/>pure functions, no rclpy"]
+        CORE["Core Pipeline.process_frame<br/>preprocess, engine, decoder, tracker"]
+        HM["HealthMonitor<br/>timer, once per second"]
+        MAP --> CORE
+        HM -. "level: skip frames<br/>(1 of 2, one per alert_period_s, or none)" .-> MAP
+    end
+    N -- "~/detections<br/>vision_msgs/Detection2DArray" --> OUT1["Consumers"]
+    N -- "~/frame_meta<br/>jetson_vision_msgs/FrameMeta" --> OUT1
+    N -- "/diagnostics" --> OUT2["Monitoring"]
+```
+
+The node copies `header.stamp` and `frame_id` from the input image to every output, and the transitions are
+`configure` (builds the core and the publishers) and `activate` (subscribes to the image topic).
+`jetson_vision_ros2/launch/vision.launch.py` brings the node to the active state.
 
 ```
 cd <workspace> && cp -r <repo>/adapters/ros2/* src/ && colcon build

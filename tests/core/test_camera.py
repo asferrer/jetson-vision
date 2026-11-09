@@ -335,7 +335,8 @@ def test_missing_camera_is_retried_with_growing_waits_and_stops_promptly(rf_mani
     pipe.stop()
     assert time.monotonic() - t0 < 1.0 and not any(t.is_alive() for t in pipe._threads)
     gaps = np.diff(source.open_times)
-    assert len(gaps) >= 3 and gaps[1] > gaps[0] * 1.5  # the wait grows
+    # the wait grows; compare the last gap with the first, as one step is within the timer resolution on Windows
+    assert len(gaps) >= 3 and gaps[-1] > gaps[0] * 1.5
     assert pipe.metrics.counters["reconnects"] >= 3 and pipe.metrics.counters["captured"] == 0
 
 

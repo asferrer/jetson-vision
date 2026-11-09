@@ -361,7 +361,7 @@ class StdoutSink:
 
 
 def make_sink(spec: str, model_id: str = "unknown", *, max_bytes: int = 0, backups: int = 3) -> Sink:
-    """Build a sink from ``jsonl:<path>``, ``compact:<path>`` or ``stdout``.
+    """Build a sink from ``jsonl:<path>``, ``compact:<path>``, ``video:<path.mp4>[?options]`` or ``stdout``.
 
     max_bytes > 0 rotates a JSONL file at that size, keeping ``backups`` older files.
     """
@@ -372,4 +372,10 @@ def make_sink(spec: str, model_id: str = "unknown", *, max_bytes: int = 0, backu
         return HexFileSink(arg, model_id)
     if kind == "stdout" and not arg:
         return StdoutSink()
-    raise ValueError(f"invalid sink spec {spec!r}; use jsonl:<path>, compact:<path> or stdout")
+    if kind == "video" and arg:
+        from jetson_vision.video_sink import VideoSink, parse_video_spec
+
+        path, opts = parse_video_spec(arg)
+        return VideoSink(path, size=opts.get("size", (1280, 720)), fps=opts.get("fps", 30),
+                         queue_size=opts.get("queue", 4), encoder=opts.get("encoder", "auto"))
+    raise ValueError(f"invalid sink spec {spec!r}; use jsonl:<path>, compact:<path>, video:<path.mp4> or stdout")

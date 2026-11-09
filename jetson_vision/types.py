@@ -1,7 +1,7 @@
 """Data contract of the inference core. Changing a field means bumping SCHEMA_VERSION."""
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from enum import IntEnum
 from typing import Any
 
@@ -82,9 +82,12 @@ class FrameResult:
     timings: StageTimings = field(default_factory=StageTimings)
     dropped_before: int = 0
     schema_version: int = SCHEMA_VERSION
+    # Set only when a sink asks for it (`wants_pixels`); never serialised.
+    pixels: np.ndarray | None = field(default=None, repr=False, compare=False)
 
     def to_dict(self) -> dict[str, Any]:
-        data = asdict(self)
+        data = asdict(replace(self, pixels=None))
+        del data["pixels"]
         data["degradation_level"] = int(self.degradation_level)
         return data
 

@@ -124,7 +124,14 @@ jv run --source <uri> --model models/rfdetr_int8g.yaml --sink jsonl:out/results.
 
 - `--source`: folder or image, video file, `v4l2:N` or `/dev/videoN`, `gst:<uri>`, or a live camera `cam:...` (next section).
 - `--backend tensorrt|fake` (default `tensorrt`); `--model-dir` or `JV_MODEL_DIR` for the engine.
-- `--sink` can be repeated: `jsonl:<path>`, `compact:<path>` or `stdout`.
+- `--sink` can be repeated: `jsonl:<path>`, `compact:<path>`, `video:<path.mp4>[?options]` or `stdout`.
+- `video:` records an annotated mp4 (boxes in the app's class colours, class and confidence, processing FPS, inference and total
+  latency). Options: `size=WxH` (default 1280x720), `fps=N` (playback rate of the file, default 30), `queue=N` (frames waiting
+  for the encoder, default 4), `encoder=auto|gst|mp4v` (`auto` = H.264 with GStreamer `x264enc ultrafast` when OpenCV has
+  GStreamer, else `mp4v`; the Orin Nano has no NVENC, so it is software). It runs in its own thread: when the encoder is slower
+  than the pipeline it drops frames of the output video (`dropped` in the log line at exit), never frames of the inference.
+  The file is only finalised on a clean stop (`--max-seconds`, SIGINT/SIGTERM). Example:
+  `jv run --source cam:rtsp://host/s?protocols=tcp --model models/rfdetr_int8g.yaml --sink "video:out/clip.mp4?size=1280x720"`.
 - `--track` enables IoU tracking (off by default). `--threshold` overrides the score threshold (manifest default: RF-DETR
   0.45, RT-DETRv2 0.6). `--max-frames N` and `--max-seconds S` stop the run.
 - `--live` treats the source as a camera (newest frame wins); with `gst:file:` it plays the file at its own rate and drops

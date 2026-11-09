@@ -211,6 +211,7 @@ class Pipeline:
         self._threads: list[threading.Thread] = []
         self._last_seq: dict[str, int] = {}
         self._loaded = False
+        self._want_pixels = any(getattr(s, "wants_pixels", False) for s in self.sinks)
 
     @property
     def model_id(self) -> str:
@@ -391,6 +392,8 @@ class Pipeline:
         t0 = time.perf_counter_ns()
         w.queue_ns += t0 - w.enqueued
         result = self._finish(w.frame, w.outputs, w.preprocess_ns, w.inference_ns, w.capture_ns, w.queue_ns)
+        if self._want_pixels:
+            result.pixels = w.frame.pixels
         self.metrics.count("processed")
         return result, time.perf_counter_ns()
 
@@ -453,4 +456,5 @@ class Pipeline:
                 except Exception:
                     self.metrics.count("sink_errors")
                     log.exception("sink %s failed", type(sink).__name__)
+            result.pixels = None
             self.metrics.record(result.timings, result.dropped_before)

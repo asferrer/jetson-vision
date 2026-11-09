@@ -147,7 +147,7 @@ jv run --source "cam:rtsp://user:pass@camera.local/stream1?codec=h264&latency=10
 |---|---|
 | `cam:csi:<id>[?w=&h=&fps=&flip=]` | `nvarguscamerasrc` (NVMM, NV12) -> `nvvidconv` -> BGR. `flip` is the `nvvidconv` flip-method (0 to 7). |
 | `cam:v4l2:<device or N>[?w=&h=&fps=&fmt=&hw=]` | `v4l2src` with `fmt` = `mjpg` (default), `yuy2` or `nv12`. MJPEG: `nvv4l2decoder mjpeg=1` (`hw=1`, default) or `jpegdec` (`hw=0`). Raw: `nvvidconv` (`hw=1`) or `videoconvert` (`hw=0`) to BGR. |
-| `cam:rtsp://host/path[?codec=&latency=&hw=]` | `rtspsrc` -> depayloader -> `nvv4l2decoder` (`hw=1`) or `avdec_*` (`hw=0`). `codec` = `h264` (default) or `h265`; `latency` in ms (default 100). The URL cannot carry its own query string; use a `gst:` launch string for that. |
+| `cam:rtsp://host/path[?codec=&latency=&hw=&protocols=]` | `rtspsrc` -> depayloader -> `nvv4l2decoder` (`hw=1`) or `avdec_*` (`hw=0`). `codec` = `h264` (default) or `h265`; `latency` in ms (default 100); `protocols` = `tcp` or `udp` fixes the transport (default: `rtspsrc` tries UDP and falls back to TCP after 5 s, which is longer than the 5 s start timeout, so behind NAT or a firewall that drops UDP use `protocols=tcp`). The URL cannot carry its own query string; use a `gst:` launch string for that. |
 | `cam:test[?w=&h=&fps=&fmt=&frames=]` | `videotestsrc is-live=true` through the same conversion tail. **For tests only**: it needs no camera. `frames=N` ends the stream after N frames (simulates a camera that goes away). |
 
 Defaults: `w=1920 h=1080 fps=30`. An unknown parameter or value is an error, not ignored.

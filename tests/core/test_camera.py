@@ -95,6 +95,14 @@ def test_rtsp_chain_depayloads_and_decodes():
     assert "latency=20 ! rtph265depay ! h265parse ! avdec_h265" in h265 and h265.endswith(LIVE_SINK)
 
 
+def test_rtsp_protocols_fix_the_transport_and_default_is_unchanged():
+    tcp = camera_launch(parse_camera_uri("cam:rtsp://10.0.0.2/s?protocols=tcp"))
+    assert "rtspsrc location=rtsp://10.0.0.2/s latency=100 protocols=tcp ! rtph264depay" in tcp
+    assert "protocols" not in camera_launch(parse_camera_uri("cam:rtsp://10.0.0.2/s"))
+    with pytest.raises(ValueError, match="protocols"):
+        parse_camera_uri("cam:rtsp://10.0.0.2/s?protocols=http")
+
+
 def test_test_source_is_live_and_shares_the_real_decode_tail():
     mj = camera_launch(parse_camera_uri("cam:test?fmt=mjpg&frames=90"))
     assert "videotestsrc is-live=true pattern=ball num-buffers=90" in mj and "jpegenc" in mj

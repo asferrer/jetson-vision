@@ -24,7 +24,8 @@ from jetson_vision.sources.gstreamer import GStreamerSource, _appsink, _convert_
 KINDS = ("csi", "v4l2", "rtsp", "test")
 FORMATS = ("yuy2", "nv12", "mjpg")
 CODECS = ("h264", "h265")
-_PARAMS = {"w": int, "h": int, "fps": int, "flip": int, "fmt": str, "hw": int, "latency": int, "codec": str, "frames": int}
+RTSP_PROTOCOLS = ("", "tcp", "udp")  # "" = rtspsrc default (UDP first, TCP after a 5 s silence)
+_PARAMS = {"w": int, "h": int, "fps": int, "flip": int, "fmt": str, "hw": int, "latency": int, "codec": str, "frames": int, "protocols": str}
 _ELEMENT_HINTS = {
     "nvarguscamerasrc": "JetPack's gst-nvarguscamerasrc (Jetson only); the nvargus-daemon service must be running",
     "nvv4l2decoder": "JetPack's NVIDIA decoder (Jetson only); use hw=0 for a software decoder",
@@ -46,6 +47,7 @@ class CameraSpec:
     flip: int = 0
     latency: int = 100
     codec: str = "h264"
+    protocols: str = ""  # cam:rtsp only: "tcp" or "udp" fixes the transport; "" lets rtspsrc negotiate
     frames: int = 0  # cam:test only: end the stream after N frames (simulates a camera that goes away)
 
     @property
@@ -76,6 +78,8 @@ def _check(spec: CameraSpec) -> CameraSpec:
         raise ValueError(f"camera fmt must be one of {FORMATS}, got '{spec.fmt}'")
     if spec.codec not in CODECS:
         raise ValueError(f"camera codec must be one of {CODECS}, got '{spec.codec}'")
+    if spec.protocols not in RTSP_PROTOCOLS:
+        raise ValueError(f"camera protocols must be one of {RTSP_PROTOCOLS[1:]}, got '{spec.protocols}'")
     if not 0 <= spec.flip <= 7:
         raise ValueError("camera flip must be 0..7 (nvvidconv flip-method)")
     if spec.kind in ("csi", "v4l2") and not spec.target:
@@ -132,7 +136,8 @@ def _v4l2_head(spec: CameraSpec) -> str:
 def _rtsp_head(spec: CameraSpec) -> str:
     depay, parse = ("rtph264depay", "h264parse") if spec.codec == "h264" else ("rtph265depay", "h265parse")
     dec = "nvv4l2decoder" if spec.hw else ("avdec_h264" if spec.codec == "h264" else "avdec_h265")
-    return f"rtspsrc location={spec.target} latency={spec.latency} ! {depay} ! {parse} ! {dec}"
+    proto = f" protocols={spec.protocols}" if spec.protocols else ""
+    return f"rtspsrc location={spec.target} latency={spec.latency}{proto} ! {depay} ! {parse} ! {dec}"
 
 
 def _test_head(spec: CameraSpec) -> str:

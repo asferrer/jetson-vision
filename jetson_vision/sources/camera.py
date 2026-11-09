@@ -25,7 +25,8 @@ KINDS = ("csi", "v4l2", "rtsp", "test")
 FORMATS = ("yuy2", "nv12", "mjpg")
 CODECS = ("h264", "h265")
 RTSP_PROTOCOLS = ("", "tcp", "udp")  # "" = rtspsrc default (UDP first, TCP after a 5 s silence)
-_PARAMS = {"w": int, "h": int, "fps": int, "flip": int, "fmt": str, "hw": int, "latency": int, "codec": str, "frames": int, "protocols": str}
+_PARAMS = {"w": int, "h": int, "fps": int, "flip": int, "fmt": str, "hw": int, "latency": int, "codec": str, "frames": int,
+           "protocols": str}
 _ELEMENT_HINTS = {
     "nvarguscamerasrc": "JetPack's gst-nvarguscamerasrc (Jetson only); the nvargus-daemon service must be running",
     "nvv4l2decoder": "JetPack's NVIDIA decoder (Jetson only); use hw=0 for a software decoder",
